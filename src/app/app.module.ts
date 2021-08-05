@@ -8,9 +8,9 @@ import {FooterComponent} from './core/footer/footer.component';
 import {HeaderComponent} from './core/header/header.component';
 import {UserModule} from './user/user.module';
 import {UserService} from './user/user.service';
-import { AppRoutingModule } from './app-routing.module';
-import {LoginComponent} from './user/login/login.component';
-import {RegisterComponent} from './user/register/register.component';
+import {AppRoutingModule} from './app-routing.module';
+import {HomeModule} from './home/home.module'; 
+import {HomeGuestComponent} from './home/home-guest/home-guest.component';
 
 @NgModule({
     declarations: [
@@ -20,8 +20,9 @@ import {RegisterComponent} from './user/register/register.component';
         BrowserModule,
         CoreModule,
         UserModule,
+        HomeModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule 
     ],
     providers: [
         UserService

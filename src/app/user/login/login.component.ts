@@ -33,9 +33,11 @@ export class LoginComponent implements OnInit {
         this.userService.login(data).subscribe({
             next: () => {
                 console.error(data);
+                this.router.navigate(['/home']);
             },
             error: (err) => {
                 console.error(err);
+                this.router.navigate(['/guest']);
             }
         });
     }

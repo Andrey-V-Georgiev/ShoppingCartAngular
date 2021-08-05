@@ -4,6 +4,8 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {UserService} from './user.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserRoutingModule} from './user-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -13,7 +15,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     imports: [
         CommonModule,
         FormsModule, 
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        UserRoutingModule,
+        RouterModule
     ],
     exports: [
         LoginComponent,
