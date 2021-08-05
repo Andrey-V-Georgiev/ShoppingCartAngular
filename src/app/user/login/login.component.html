@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+
+        <div class="col-4">
+
+            <form id="login-form" [formGroup]="form" (ngSubmit)="submitHandler()">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="email" class="form-control" id="username" name="username" formControlName="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        formControlName="password">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

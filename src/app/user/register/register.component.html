@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+
+        <div class="col-4">
+
+            <form id="register-form" [formGroup]="form" (ngSubmit)="submitHandler()">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" formControlName="username">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" formControlName="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" formControlName="password">
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm password</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
