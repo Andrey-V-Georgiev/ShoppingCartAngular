@@ -11,21 +11,22 @@ import {UserService} from './user/user.service';
 import {AppRoutingModule} from './app-routing.module';
 import {HomeModule} from './home/home.module'; 
 import {HomeGuestComponent} from './home/home-guest/home-guest.component';
+import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     declarations: [
         AppComponent 
     ],
-    imports: [
+    imports: [ 
         BrowserModule,
+        AppRoutingModule, 
         CoreModule,
         UserModule,
         HomeModule,
         HttpClientModule,
-        AppRoutingModule 
     ],
-    providers: [
-        UserService
+    providers: [  
     ],
     bootstrap: [
         AppComponent,
@@ -33,4 +34,5 @@ import {HomeGuestComponent} from './home/home-guest/home-guest.component';
         FooterComponent
     ]
 })
+
 export class AppModule { }

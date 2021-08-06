@@ -5,7 +5,7 @@ import {RegisterComponent} from './register/register.component';
 import {UserService} from './user.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserRoutingModule} from './user-routing.module';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -14,17 +14,14 @@ import { RouterModule } from '@angular/router';
     ],
     imports: [
         CommonModule,
-        FormsModule, 
+        FormsModule,
         ReactiveFormsModule,
         UserRoutingModule,
         RouterModule
-    ],
-    exports: [
-        LoginComponent,
-        RegisterComponent
     ],
     providers: [
         UserService
     ]
 })
+
 export class UserModule { }
