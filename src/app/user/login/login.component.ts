@@ -10,14 +10,14 @@ import {UserService} from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
-    form: FormGroup;
+    form: FormGroup; 
 
     constructor(
-        private fb: FormBuilder,
+        private formBuilder: FormBuilder,
         private userService: UserService,
-        private router: Router
+        private router: Router 
     ) {
-        this.form = this.fb.group({
+        this.form = this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(3)]],
             password: ['', [Validators.required, Validators.minLength(3)]],
         });
@@ -33,11 +33,11 @@ export class LoginComponent implements OnInit {
         this.userService.login(data).subscribe({
             next: () => {
                 console.error(data);
-                this.router.navigate(['/home']);
+                this.router.navigate(['/']);
             },
             error: (err) => {
                 console.error(err);
-                this.router.navigate(['/guest']);
+                this.router.navigate(['/']);
             }
         });
     }

@@ -4,15 +4,35 @@
         <div class="col-4">
 
             <form id="login-form" [formGroup]="form" (ngSubmit)="submitHandler()">
+
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="username" name="username" formControlName="username">
+                    <input
+                        [ngClass]="form.get('username').touched ? (form.get('username').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        id="username" type="text" formControlName="username">
                 </div>
+                <div *ngIf="form.get('username').touched && form.get('username').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('username').errors?.required">Username is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('username').errors?.minlength">Username must be at
+                        least 3 character
+                    </p>
+                </div>
+
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password"
-                        formControlName="password">
+                    <input
+                        [ngClass]="form.get('password').touched ? (form.get('password').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        type="password" id="password" name="password" formControlName="password">
                 </div>
+                <div *ngIf="form.get('password').touched && form.get('password').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('password').errors?.required">Password is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('password').errors?.minlength">Password must be at
+                        least 3 character
+                    </p>
+                </div>
+
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-success">Login</button>
                 </div>

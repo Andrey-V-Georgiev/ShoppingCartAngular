@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {confirmPasswordValidator, emailValidator} from 'src/app/shared/validators/form.validators';
 import {UserService} from '../user.service';
 
 @Component({
@@ -13,16 +14,16 @@ export class RegisterComponent implements OnInit {
     form: FormGroup;
 
     constructor(
-        private fb: FormBuilder,
+        private formBuilder: FormBuilder,
         private userService: UserService,
         private router: Router
-    ) { 
-        this.form = this.fb.group({
+    ) {
+        this.form = this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(3)]],
-            email: ['', [Validators.required, Validators.minLength(3)]],
+            email: ['', [Validators.required, emailValidator]],
             password: ['', [Validators.required, Validators.minLength(3)]],
-            confirmPassword: ['', [Validators.required, Validators.minLength(3)]]
-        });
+            confirmPassword: ['', [Validators.required, confirmPasswordValidator]]
+        } );
     }
 
     ngOnInit(): void {

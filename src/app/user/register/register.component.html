@@ -4,26 +4,76 @@
         <div class="col-4">
 
             <form id="register-form" [formGroup]="form" (ngSubmit)="submitHandler()">
+
+                <!-- USERNAME -->
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" formControlName="username">
+                    <input
+                        [ngClass]="form.get('username').touched ? (form.get('username').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        id="username" type="text" formControlName="username">
                 </div>
+                <div *ngIf="form.get('username').touched && form.get('username').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('username').errors?.required">
+                        Username is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('username').errors?.minlength">
+                        Username must be at least 3 character
+                    </p>
+                </div>
+
+                <!-- EMAIL -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" formControlName="email">
+                    <input
+                        [ngClass]="form.get('email').touched ? (form.get('email').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        type="email" class="form-control" id="email" name="email" formControlName="email">
                 </div>
+                <div *ngIf="form.get('email').touched && form.get('email').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('email').errors?.required">
+                        Email is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('email').errors?.minlength">
+                        Email is not valid least 3 character
+                    </p>
+                </div>
+
+                <!-- PASSWORD -->
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" formControlName="password">
+                    <input
+                        [ngClass]="form.get('password').touched ? (form.get('password').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        type="password" class="form-control" id="password" name="password" formControlName="password">
                 </div>
+                <div *ngIf="form.get('password').touched && form.get('password').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('password').errors?.required">
+                        Password is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('password').errors?.minlength">
+                        Password must be at least 3 character
+                    </p>
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">Confirm password</label>
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword">
+                    <input
+                        [ngClass]="form.get('confirmPassword').touched ? (form.get('confirmPassword').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword">
                 </div>
+                <div *ngIf="form.get('confirmPassword').touched && form.get('confirmPassword').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('confirmPassword').errors?.required">
+                        Confirmed password is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('confirmPassword').errors?.confirmPasswordValidation">
+                        Confirmed password doesn't match
+                    </p>
+                </div>
+
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-success">Register</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
