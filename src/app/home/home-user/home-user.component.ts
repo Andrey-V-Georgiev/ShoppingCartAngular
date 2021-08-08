@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {UserService} from 'src/app/user/user.service';
 
 @Component({
-  selector: 'app-home-user',
-  templateUrl: './home-user.component.html',
-  styleUrls: ['./home-user.component.css']
+    selector: 'app-home-user',
+    templateUrl: './home-user.component.html',
+    styleUrls: ['./home-user.component.css']
 })
 export class HomeUserComponent implements OnInit {
 
-  constructor(
-    private router: Router
-  ) { }
+    public currentUser$ = this.userService.currentUser$;
 
-  ngOnInit(): void {
-  }
+    constructor(
+        private userService: UserService
+    ) { }
 
+    ngOnInit(): void {
+    }
 }

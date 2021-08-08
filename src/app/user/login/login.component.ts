@@ -10,12 +10,12 @@ import {UserService} from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
-    form: FormGroup; 
+    form: FormGroup;
 
     constructor(
         private formBuilder: FormBuilder,
         private userService: UserService,
-        private router: Router 
+        private router: Router
     ) {
         this.form = this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(3)]],
@@ -27,16 +27,15 @@ export class LoginComponent implements OnInit {
     }
 
     submitHandler(): void {
-        const data = this.form.value;
-        console.log("Form data: ", data);
+        const formData = this.form.value;
 
-        this.userService.login(data).subscribe({
-            next: () => {
-                console.error(data);
-                this.router.navigate(['/']);
+        this.userService.login(formData).subscribe({
+            next: (data) => {
+                console.log('login data: ', data);
+                this.router.navigate(['/home']);
             },
             error: (err) => {
-                console.error(err);
+                console.log("login err: ", err);
                 this.router.navigate(['/']);
             }
         });
