@@ -21,7 +21,7 @@ import {RouterModule} from '@angular/router';
     ],
     providers: [
         UserService
-    ]
+    ] 
 })
 
 export class UserModule { }

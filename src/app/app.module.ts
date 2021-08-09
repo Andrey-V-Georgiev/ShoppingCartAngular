@@ -29,6 +29,9 @@ import {ProductModule} from './product/product.module';
     providers: [ 
         appInterceptorProvider
     ],
+    exports: [
+        UserModule 
+    ],
     bootstrap: [
         AppComponent,
         HeaderComponent,

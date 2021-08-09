@@ -3,11 +3,21 @@
 
         <div class="navbar-brand">
             <a routerLink="/" class="btn btn-lg btn-outline-success">Home</a>
+        </div> 
+
+        <div *ngIf="(isLogged$ | async); else loggedOut">
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <a routerLink="/product/all" class="btn btn-lg btn-outline-success">All products</a>
+                <a routerLink="/cart" class="btn btn-lg btn-outline-success">My cart</a>
+                <a routerLink="/logout" class="btn btn-lg btn-outline-success">Logout</a>
+            </div>
         </div>
 
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <a routerLink="/register" class="btn btn-lg btn-outline-success">Register</a>
-            <a routerLink="/login" class="btn btn-lg btn-outline-success">Login</a>
-        </div>
+        <ng-template #loggedOut>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <a routerLink="/register" class="btn btn-lg btn-outline-success">Register</a>
+                <a routerLink="/login" class="btn btn-lg btn-outline-success">Login</a>
+            </div>
+        </ng-template> 
     </div>
-</nav> 
+</nav>
