@@ -2,22 +2,35 @@
     <div class="container-fluid">
 
         <div class="navbar-brand">
-            <a routerLink="/" class="btn btn-lg btn-outline-success">Home</a>
-        </div> 
+            <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+        </div>
+
+
 
         <div *ngIf="(isLogged$ | async); else loggedOut">
             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <a routerLink="/product/all" class="btn btn-lg btn-outline-success">All products</a>
-                <a routerLink="/cart" class="btn btn-lg btn-outline-success">My cart</a>
-                <a routerLink="/logout" class="btn btn-lg btn-outline-success">Logout</a>
+                <a routerLink="/product/all" class="btn btn-outline-success btn-lg">All products</a>
+                <a routerLink="/cart" class="btn btn-outline-success btn-lg">My cart</a>
+                <a routerLink="/logout" class="btn btn-outline-success btn-lg">Logout</a>
             </div>
         </div>
 
         <ng-template #loggedOut>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <a routerLink="/register" class="btn btn-lg btn-outline-success">Register</a>
-                <a routerLink="/login" class="btn btn-lg btn-outline-success">Login</a>
+                <a routerLink="/register" class="btn btn-outline-success btn-lg">Register</a>
+                <a routerLink="/login" class="btn btn-outline-success btn-lg">Login</a>
             </div>
-        </ng-template> 
+        </ng-template>
     </div>
 </nav>
+<nav class="navbar navbar-light bg-transparent">
+    <div class="alert alert-light col-3" role="alert">
+        23:45:00
+    </div>
+    <div id="notification" class="alert alert-success text-center col-6" role="alert">
+        Your registration was successful 
+    </div>
+    <div class="alert alert-light col-3 d-flex flex-row-reverse" role="alert">
+        36C
+    </div>
+</nav> 
