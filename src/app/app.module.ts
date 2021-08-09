@@ -11,6 +11,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HomeModule} from './home/home.module';  
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import {appInterceptorProvider} from './core/interceptors/app.interceptor';
+import {ProductModule} from './product/product.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import {appInterceptorProvider} from './core/interceptors/app.interceptor';
         CoreModule,
         UserModule,
         HomeModule,
+        ProductModule,
         HttpClientModule, 
     ],
     providers: [ 
