@@ -12,6 +12,7 @@ import {HomeModule} from './home/home.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import {appInterceptorProvider} from './core/interceptors/app.interceptor';
 import {ProductModule} from './product/product.module';
+import {ContactsModule} from './contacts/contacts.module';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import {ProductModule} from './product/product.module';
         UserModule,
         HomeModule,
         ProductModule,
+        ContactsModule,
         HttpClientModule, 
     ],
     providers: [ 

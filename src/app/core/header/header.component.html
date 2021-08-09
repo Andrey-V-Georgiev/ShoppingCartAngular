@@ -9,14 +9,17 @@
 
         <div *ngIf="(isLogged$ | async); else loggedOut">
             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <a routerLink="/product/all" class="btn btn-outline-success btn-lg">All products</a>
+                <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Products</a>
                 <a routerLink="/cart" class="btn btn-outline-success btn-lg">My cart</a>
+                <a routerLink="/contacts" class="btn btn-outline-success btn-lg">Contacts</a>
                 <a routerLink="/logout" class="btn btn-outline-success btn-lg">Logout</a>
             </div>
         </div>
 
         <ng-template #loggedOut>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Products</a>
+                <a routerLink="/contacts" class="btn btn-outline-success btn-lg">Contacts</a>
                 <a routerLink="/register" class="btn btn-outline-success btn-lg">Register</a>
                 <a routerLink="/login" class="btn btn-outline-success btn-lg">Login</a>
             </div>
