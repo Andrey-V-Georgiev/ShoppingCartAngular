@@ -8,11 +8,11 @@ import {FooterComponent} from './core/footer/footer.component';
 import {HeaderComponent} from './core/header/header.component';
 import {UserModule} from './user/user.module'; 
 import {AppRoutingModule} from './app-routing.module';
-import {HomeModule} from './home/home.module';  
-import { HTTP_INTERCEPTORS } from '@angular/common/http'
-import {appInterceptorProvider} from './core/interceptors/app.interceptor';
-import {ProductModule} from './product/product.module';
+import {HomeModule} from './home/home.module';    
 import {ContactsModule} from './contacts/contacts.module';
+import {appInterceptorProvider} from './core/interceptors/app.interceptor';
+import {tokenInterceptorProvider} from './core/interceptors/token.interceptor';
+import {UserService} from './user/user.service';
 
 @NgModule({
     declarations: [
@@ -23,13 +23,14 @@ import {ContactsModule} from './contacts/contacts.module';
         AppRoutingModule, 
         CoreModule,
         UserModule,
-        HomeModule,
-        ProductModule,
+        HomeModule, 
         ContactsModule,
         HttpClientModule, 
     ],
     providers: [ 
-        appInterceptorProvider
+        UserService,
+        appInterceptorProvider,
+        tokenInterceptorProvider
     ],
     exports: [
         UserModule 

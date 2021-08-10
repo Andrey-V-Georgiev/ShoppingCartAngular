@@ -15,7 +15,12 @@ const routes: Routes = [
             {
                 path: 'home',
                 component: HomeUserComponent
-            } 
+            },
+            {
+                /* Lazy loading */
+                path: 'product',
+                loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+            }
         ]
     }
 ];
