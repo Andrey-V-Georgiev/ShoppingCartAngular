@@ -1,7 +1,7 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {IUserLogin} from '../../shared/interfaces/user-service';
+import {IUserLogin} from '../../shared/interfaces/user.interfaces';
 import {tap} from 'rxjs/operators';
 
 

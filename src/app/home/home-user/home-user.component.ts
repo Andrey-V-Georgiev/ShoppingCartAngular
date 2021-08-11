@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'; 
 import {Observable} from 'rxjs';
 import {AuthService} from 'src/app/core/services/auth.service';
-import {IUserLogin} from 'src/app/shared/interfaces/user-service'; 
+import {IUserLogin} from 'src/app/shared/interfaces/user.interfaces'; 
 
 @Component({
     selector: 'app-home-user',

@@ -1,7 +1,7 @@
 import {Injectable, Injector, Provider} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Observable} from 'rxjs'; 
-import {IUserLogin} from 'src/app/shared/interfaces/user-service';
+import {IUserLogin} from 'src/app/shared/interfaces/user.interfaces';
 import Constants from 'src/app/shared/constants/constants';
 import {AuthService} from '../services/auth.service';
 

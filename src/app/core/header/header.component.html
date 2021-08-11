@@ -25,15 +25,22 @@
     </div>
 </nav>
 <nav class="navbar navbar-light bg-transparent">
-    <div class="alert alert-light col-3" role="alert">
+    <div class="btn light btn-lg disabled" role="alert">
         23:45:00
     </div>
 
-    <div id="notification" [className]="(notificationState$ | async).className"  role="alert">
-         {{(notificationState$ | async).notificationMessage}} 
+    <div id="notification" [className]="(notificationState$ | async).className" role="alert">
+        {{(notificationState$ | async).notificationMessage}}
     </div>
-    
-    <div class="alert alert-light col-3 d-flex flex-row-reverse" role="alert">
-        36C
+
+    <div *ngIf="(isLogged$ | async); else tempCelsius">
+        <div class="btn light btn-lg disabled d-flex flex-row-reverse">
+            Welcome, {{userUsername$ | async}}
+        </div>
     </div>
-</nav> 
+    <ng-template #tempCelsius>
+        <div class="btn light btn-lg disabled d-flex flex-row-reverse" role="alert">
+           {{(weather$ | async).name}} {{(weather$ | async).main.temp | number : '1.0-0' }} &#8451;
+        </div>
+    </ng-template>
+</nav>
