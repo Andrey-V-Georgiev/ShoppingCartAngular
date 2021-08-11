@@ -8,8 +8,7 @@ import {FooterComponent} from './core/footer/footer.component';
 import {HeaderComponent} from './core/header/header.component';
 import {UserModule} from './user/user.module'; 
 import {AppRoutingModule} from './app-routing.module';
-import {HomeModule} from './home/home.module';    
-import {ContactsModule} from './contacts/contacts.module';
+import {HomeModule} from './home/home.module';     
 import {appInterceptorProvider} from './core/interceptors/app.interceptor';
 import {tokenInterceptorProvider} from './core/interceptors/token.interceptor';
 import {UserService} from './user/services/user.service';
@@ -23,8 +22,7 @@ import {UserService} from './user/services/user.service';
         AppRoutingModule, 
         CoreModule,
         UserModule,
-        HomeModule, 
-        ContactsModule,
+        HomeModule,  
         HttpClientModule, 
     ],
     providers: [ 

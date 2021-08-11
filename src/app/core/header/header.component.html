@@ -17,7 +17,7 @@
         <ng-template #loggedOut>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
                 <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Products</a>
-                <a routerLink="/contacts" class="btn btn-outline-success btn-lg">Contacts</a>
+                <a routerLink="/contact" class="btn btn-outline-success btn-lg">Contacts</a>
                 <a routerLink="/register" class="btn btn-outline-success btn-lg">Register</a>
                 <a routerLink="/login" class="btn btn-outline-success btn-lg">Login</a>
             </div>
@@ -25,22 +25,23 @@
     </div>
 </nav>
 <nav class="navbar navbar-light bg-transparent">
-    <div class="btn light btn-lg disabled" role="alert">
-        23:45:00
-    </div>
+    <div class="alert alert-light col-1"> </div>
 
     <div id="notification" [className]="(notificationState$ | async).className" role="alert">
         {{(notificationState$ | async).notificationMessage}}
     </div>
 
     <div *ngIf="(isLogged$ | async); else tempCelsius">
-        <div class="btn light btn-lg disabled d-flex flex-row-reverse">
+        <div class="alert alert-light d-flex flex-row-reverse row">
             Welcome, {{userUsername$ | async}}
         </div>
     </div>
+
     <ng-template #tempCelsius>
-        <div class="btn light btn-lg disabled d-flex flex-row-reverse" role="alert">
-           {{(weather$ | async).name}} {{(weather$ | async).main.temp | number : '1.0-0' }} &#8451;
+        <div class="alert alert-light d-flex flex-row-reverse row">
+            <div *ngIf="(weather$ | async)">
+                {{(weather$ | async).name}} {{(weather$ | async).main.temp | number : '1.0-0' }} &#8451;
+            </div>
         </div>
     </ng-template>
 </nav>

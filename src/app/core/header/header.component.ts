@@ -16,9 +16,9 @@ import {WeatherService} from '../services/weather.service';
 })
 export class HeaderComponent implements OnInit {
 
-    isLogged$: Observable<Boolean> = this.authService.isLogged();
+    isLogged$: Observable<Boolean | null> = this.authService.isLogged();
+    userUsername$: Observable<string | null> = this.authService.getUsername();
     notificationState$: Observable<NotificationState> = this.notificationService.getNotificationState();
-    userUsername$: Observable<string> = this.authService.getUsername();
     weather$: Observable<IWeather> = this.weatherService.getWeather();
 
     constructor(

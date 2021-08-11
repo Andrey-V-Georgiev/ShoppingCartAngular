@@ -10,9 +10,16 @@ import {UserService} from 'src/app/user/services/user.service';
 export class AuthService {
 
     private currentUser$: Observable<IUserLogin> = this.userService.getCurrentUser();
-    private isLogged$: Observable<Boolean> = this.currentUser$.pipe(map(user => Boolean(user)));
-    private userUsername$: Observable<string> = this.currentUser$.pipe(map(user => String(user.username)));
-    private userRole$: Observable<string> = this.currentUser$.pipe(map(user => String(user.role)));
+
+    private isLogged$: Observable<Boolean | null> = this.currentUser$.pipe(
+        map(user => user == undefined ? null : Boolean(user))
+    );
+    private userUsername$: Observable<string | null> = this.currentUser$.pipe(
+        map(user => user == undefined ? null : String(user.username))
+    );
+    private userRole$: Observable<string | null> = this.currentUser$.pipe(
+        map(user => user == undefined ? null : String(user.role))
+    );
 
     constructor(
         private userService: UserService
@@ -22,15 +29,15 @@ export class AuthService {
         return this.currentUser$;
     }
 
-    getCurrentUserRole(): Observable<string> {
+    getCurrentUserRole(): Observable<string | null> {
         return this.userRole$;
     }
 
-    getUsername(): Observable<string> {
+    getUsername(): Observable<string | null> {
         return this.userUsername$;
     }
 
-    isLogged(): Observable<Boolean> {
+    isLogged(): Observable<Boolean | null> {
         return this.isLogged$;
     }
 }

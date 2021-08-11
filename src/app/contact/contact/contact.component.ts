@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-contacts',
-    templateUrl: './contacts.component.html',
-    styleUrls: ['./contacts.component.css']
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.css']
 })
-export class ContactsComponent implements OnInit {
+export class ContactComponent implements OnInit {
 
     // mapOptions: google.maps.MapOptions = {
     //     center: {lat: 38.9987208, lng: -77.2538699},
