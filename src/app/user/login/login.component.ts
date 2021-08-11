@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {NotificationService} from 'src/app/core/notification.service';
-import {UserService} from '../user.service';
+import {NotificationService} from 'src/app/core/services/notification.service';
+import {UserService} from '../services/user.service';
 
 @Component({
     selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private userService: UserService,
         private router: Router,
-        public notificationService: NotificationService
+        private notificationService: NotificationService
     ) {
         this.form = this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(3)]],

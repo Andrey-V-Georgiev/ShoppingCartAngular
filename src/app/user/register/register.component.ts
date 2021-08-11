@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {NotificationService} from 'src/app/core/notification.service';
+import {NotificationService} from 'src/app/core/services/notification.service';
 import {confirmPasswordValidator, emailValidator} from 'src/app/shared/validators/form.validators';
-import {UserService} from '../user.service';
+import {UserService} from '../services/user.service';
 
 @Component({
     selector: 'app-register',
@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
         private formBuilder: FormBuilder,
         private userService: UserService,
         private router: Router,
-        public notificationService: NotificationService
+        private notificationService: NotificationService
     ) {
         this.form = this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(3)]],

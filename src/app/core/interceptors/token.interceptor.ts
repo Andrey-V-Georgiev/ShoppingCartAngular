@@ -1,19 +1,18 @@
 import {Injectable, Injector, Provider} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {UserService} from 'src/app/user/user.service';
+import {Observable} from 'rxjs'; 
 import {IUserLogin} from 'src/app/shared/interfaces/user-service';
 import Constants from 'src/app/shared/constants/constants';
+import {AuthService} from '../services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+ 
+    isLogged$: Observable<Boolean> = this.authService.isLogged();
+    currentUser$: Observable<IUserLogin> = this.authService.getCurrentUser();
 
-    userService = this.injector.get(UserService);
-    isLogged$: Observable<Boolean> = this.userService.isLogged$;
-    currentUser$: Observable<IUserLogin> = this.userService.currentUser$;
-
-    constructor(
-        private injector: Injector
+    constructor( 
+        private authService: AuthService,
     ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

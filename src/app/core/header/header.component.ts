@@ -1,8 +1,11 @@
 import {HttpResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {UserService} from 'src/app/user/user.service';
-import {NotificationService} from '../notification.service';
+import {Observable} from 'rxjs';
+import {NotificationState} from 'src/app/shared/interfaces/notification-state';
+import {UserService} from 'src/app/user/services/user.service';
+import {AuthService} from '../services/auth.service';
+import {NotificationService} from '../services/notification.service';
 
 @Component({
     selector: 'app-header',
@@ -11,12 +14,13 @@ import {NotificationService} from '../notification.service';
 })
 export class HeaderComponent implements OnInit {
 
-    isLogged$ = this.userService.isLogged$;
-    notificationState$ = this.notificationService.notificationState$;
+    isLogged$: Observable<Boolean> = this.authService.isLogged();
+    notificationState$: Observable<NotificationState> = this.notificationService.getNotificationState();
 
     constructor(
-        public userService: UserService,
-        public notificationService: NotificationService,
+        private userService: UserService,
+        private notificationService: NotificationService,
+        private authService: AuthService,
         private router: Router
     ) { }
 

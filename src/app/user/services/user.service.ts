@@ -1,9 +1,8 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {IUserLogin} from '../shared/interfaces/user-service';
-import {map, tap} from 'rxjs/operators';
-import {NotificationService} from '../core/notification.service';
+import {IUserLogin} from '../../shared/interfaces/user-service';
+import {tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,14 +11,15 @@ import {NotificationService} from '../core/notification.service';
 export class UserService {
 
     private _state: BehaviorSubject<any> = new BehaviorSubject(undefined);
-    public currentUser$: Observable<IUserLogin> = this._state.asObservable();
-    public isLogged$: Observable<Boolean> = this.currentUser$.pipe(map(user => Boolean(user)));
-    public userRole$: Observable<string> = this.currentUser$.pipe(map(user => String(user.role)));
+    private currentUser$: Observable<IUserLogin> = this._state.asObservable();
 
     constructor(
-        private http: HttpClient,
-        public notificationService: NotificationService
+        private http: HttpClient
     ) { }
+
+    getCurrentUser(): Observable<IUserLogin> {
+        return this.currentUser$;
+    }
 
     register(data: any): Observable<any> {
         return this.http.post<string>('/auth/register', data);
@@ -29,7 +29,7 @@ export class UserService {
         return this.http.post('/auth/login', data, {observe: 'response'}).pipe(
             tap((res: HttpResponse<any>) => {
                 console.log("LOGIN BODY: ", res.body);
-                
+
                 this._state.next(res.body);
             })
         );

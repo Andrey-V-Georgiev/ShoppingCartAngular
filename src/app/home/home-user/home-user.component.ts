@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {UserService} from 'src/app/user/user.service';
+import {Component, OnInit} from '@angular/core'; 
+import {Observable} from 'rxjs';
+import {AuthService} from 'src/app/core/services/auth.service';
+import {IUserLogin} from 'src/app/shared/interfaces/user-service'; 
 
 @Component({
     selector: 'app-home-user',
@@ -9,10 +10,10 @@ import {UserService} from 'src/app/user/user.service';
 })
 export class HomeUserComponent implements OnInit {
 
-    public currentUser$ = this.userService.currentUser$;
+    public currentUser$: Observable<IUserLogin> = this.authService.getCurrentUser();
 
     constructor(
-        private userService: UserService
+        private authService: AuthService
     ) { }
 
     ngOnInit(): void {

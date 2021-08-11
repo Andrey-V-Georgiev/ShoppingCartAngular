@@ -12,7 +12,7 @@ import {HomeModule} from './home/home.module';
 import {ContactsModule} from './contacts/contacts.module';
 import {appInterceptorProvider} from './core/interceptors/app.interceptor';
 import {tokenInterceptorProvider} from './core/interceptors/token.interceptor';
-import {UserService} from './user/user.service';
+import {UserService} from './user/services/user.service';
 
 @NgModule({
     declarations: [
