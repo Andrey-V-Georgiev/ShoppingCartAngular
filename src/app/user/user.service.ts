@@ -14,6 +14,7 @@ export class UserService {
     private _state: BehaviorSubject<any> = new BehaviorSubject(undefined);
     public currentUser$: Observable<IUserLogin> = this._state.asObservable();
     public isLogged$: Observable<Boolean> = this.currentUser$.pipe(map(user => Boolean(user)));
+    public userRole$: Observable<string> = this.currentUser$.pipe(map(user => String(user.role)));
 
     constructor(
         private http: HttpClient,
@@ -27,6 +28,8 @@ export class UserService {
     login(data: any): Observable<any> {
         return this.http.post('/auth/login', data, {observe: 'response'}).pipe(
             tap((res: HttpResponse<any>) => {
+                console.log("LOGIN BODY: ", res.body);
+                
                 this._state.next(res.body);
             })
         );

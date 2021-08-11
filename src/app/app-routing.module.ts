@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router'; 
+import {AuthGuard} from './core/guards/auth.guard';
 import {HomeGuestComponent} from './home/home-guest/home-guest.component';
 import {HomeUserComponent} from './home/home-user/home-user.component';
 
@@ -14,12 +15,16 @@ const routes: Routes = [
             },
             {
                 path: 'home',
-                component: HomeUserComponent
+                component: HomeUserComponent,
+                canActivate: [AuthGuard]
             },
-            {
-                /* Lazy loading */
+            { 
                 path: 'product',
                 loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+            }, 
+            { 
+                path: 'cart',
+                loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
             }
         ]
     }

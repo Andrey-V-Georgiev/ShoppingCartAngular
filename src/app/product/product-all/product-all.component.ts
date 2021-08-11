@@ -16,10 +16,10 @@ export class ProductAllComponent implements OnInit {
     ngOnInit(): void { 
         this.http.get('/product/all').subscribe({
             next: (data) => {
-                console.log('login data: ', data);
+                console.log('/product/all data: ', data);
             },
             error: (err) => {
-                console.log("login err: ", err);
+                console.log("/product/all err: ", err);
             }
         });
     } 
