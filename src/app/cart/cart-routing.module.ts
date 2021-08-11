@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AdminGuard} from '../core/guards/admin.guard';
+import {RouterModule, Routes} from '@angular/router'; 
 import {AuthGuard} from '../core/guards/auth.guard';
 import {CartComponent} from './cart/cart.component';
 

@@ -27,9 +27,7 @@ export class UserService {
 
     login(data: any): Observable<any> {
         return this.http.post('/auth/login', data, {observe: 'response'}).pipe(
-            tap((res: HttpResponse<any>) => {
-                console.log("LOGIN BODY: ", res.body);
-
+            tap((res: HttpResponse<any>) => { 
                 this._state.next(res.body);
             })
         );
