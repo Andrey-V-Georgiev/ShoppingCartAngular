@@ -9,4 +9,5 @@ export default class Constants {
     public static readonly ROLE_ADMIN: string = "ROLE_ADMIN";
 
     public static readonly WEATHER_API_URL: string = "http://api.openweathermap.org/data/2.5/weather?id=727011&units=metric&appid=e222cd92a8df417eca6998c271a58972";
+ 
 }    

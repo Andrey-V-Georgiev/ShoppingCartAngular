@@ -32,13 +32,13 @@
     </div>
 
     <div *ngIf="(isLogged$ | async); else tempCelsius">
-        <div class="alert alert-light d-flex flex-row-reverse row">
+        <div id="username" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">
             Welcome, {{userUsername$ | async}}
         </div>
     </div>
 
     <ng-template #tempCelsius>
-        <div class="alert alert-light d-flex flex-row-reverse row">
+        <div id="celsius" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">
             <div *ngIf="(weather$ | async)">
                 {{(weather$ | async).name}} {{(weather$ | async).main.temp | number : '1.0-0' }} &#8451;
             </div>
