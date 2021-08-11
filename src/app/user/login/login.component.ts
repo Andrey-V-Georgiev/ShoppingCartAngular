@@ -32,15 +32,12 @@ export class LoginComponent implements OnInit {
         const formData = this.form.value;
 
         this.userService.login(formData).subscribe({
-            next: (data) => {
-                console.log("LOGIN DATA: ", data);
-                
+            next: (message) => {  
                 this.router.navigate(['/home']);
             },
-            error: (err) => {
-                console.log("LOGIN ERROR: ", err);
-                console.log("ERROR MESSAGE: ", err.error);
-               
+            error: (err) => { 
+                const errorMessage: string = err.error;
+                this.notificationService.setErrorState(errorMessage);
                 this.router.navigate(['/']);
             }
         });

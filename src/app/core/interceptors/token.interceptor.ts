@@ -23,22 +23,19 @@ export class TokenInterceptor implements HttpInterceptor {
         this.isLogged$.subscribe(value => {
             isLogged = value
         });
-
-        console.log("IS LOGGED: ", isLogged);
-
-
         if (isLogged) {
-            this.currentUser$.subscribe(user => {
-                jwtToken = user.token
+            this.currentUser$.subscribe({
+                next: (user) => {
+                    if (user != undefined) {
+                        jwtToken = user.token
+                    }
+                }
             });
-
-            console.log("JWT TOKEN: ", jwtToken);
             req = req.clone({
                 headers: req.headers
                     .set(Constants.AUTHORIZATION_HEADER_KEY, jwtToken)
                     .set(Constants.CONTENT_TYPE_HEADER_KEY, Constants.APPLICATION_JSON_HEADER_VALUE)
             });
-
         }
         return next.handle(req);
     }

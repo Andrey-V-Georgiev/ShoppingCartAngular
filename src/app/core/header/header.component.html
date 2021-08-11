@@ -10,7 +10,7 @@
                 <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Products</a>
                 <a routerLink="/cart" class="btn btn-outline-success btn-lg">My cart</a>
                 <a routerLink="/contacts" class="btn btn-outline-success btn-lg">Contacts</a>
-                <a routerLink="/logout" class="btn btn-outline-success btn-lg">Logout</a>
+                <a (click)="logout()" class="btn btn-outline-success btn-lg">Logout</a>
             </div>
         </div>
 
@@ -32,7 +32,6 @@
     <div id="notification" [className]="(notificationState$ | async).className"  role="alert">
          {{(notificationState$ | async).notificationMessage}} 
     </div>
-   
     
     <div class="alert alert-light col-3 d-flex flex-row-reverse" role="alert">
         36C

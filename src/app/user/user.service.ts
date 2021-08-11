@@ -31,4 +31,22 @@ export class UserService {
             })
         );
     }
+
+    logout(): Observable<any> {
+
+        let jwtToken: string = '';
+        this.currentUser$.subscribe({
+            next: (user) => {
+                if (user != undefined) {
+                    jwtToken = user.token
+                }
+            }
+        });
+
+        return this.http.post('/auth/logout', jwtToken, {observe: 'response'}).pipe(
+            tap((res: HttpResponse<any>) => {
+                this._state.next(undefined);
+            })
+        );;
+    }
 }

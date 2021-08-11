@@ -32,7 +32,7 @@ export class NotificationService {
         this._state.next(nextState);
 
         /* Hide the notification after few seconds */
-        setTimeout(() => this._state.next(this.generateInitialState()), 3000);
+        setTimeout(() => this._state.next(this.generateInitialState()), 5000);
     }
 
     setErrorState(message: string) {
@@ -45,6 +45,6 @@ export class NotificationService {
         this._state.next(nextState);
 
         /* Hide the notification after few seconds */
-        setTimeout(() => this._state.next(this.generateInitialState()), 3000);
+        setTimeout(() => this._state.next(this.generateInitialState()), 5000);
     }
 }
