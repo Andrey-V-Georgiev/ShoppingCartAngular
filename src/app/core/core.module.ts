@@ -2,21 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { RouterModule } from '@angular/router';
-import { Error404Component } from './error404/error404.component'; 
+import { RouterModule } from '@angular/router'; 
 import {UserModule} from '../user/user.module';
+import {NotificationService} from './notification.service';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent,
-    Error404Component
+    FooterComponent 
   ],
   imports: [
     CommonModule,
     RouterModule,
     UserModule  
+  ],
+  providers: [
+    NotificationService
   ] 
 })
 

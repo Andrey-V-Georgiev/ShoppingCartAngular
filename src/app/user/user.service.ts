@@ -1,8 +1,9 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IUserLogin} from '../shared/interfaces/user-service';
 import {map, tap} from 'rxjs/operators';
+import {NotificationService} from '../core/notification.service';
 
 
 @Injectable({
@@ -16,20 +17,17 @@ export class UserService {
 
     constructor(
         private http: HttpClient,
+        public notificationService: NotificationService
     ) { }
 
     register(data: any): Observable<any> {
-        const url: string = `/auth/register`;
-        return this.http.post<string>(url, data);
+        return this.http.post<string>('/auth/register', data);
     }
 
     login(data: any): Observable<any> {
-        const url: string = `/auth/login`;
-
-        return this.http.post(url, data).pipe(
-            tap((user) => {
-                const newState: IUserLogin = user as IUserLogin;
-                this._state.next(newState);
+        return this.http.post('/auth/login', data, {observe: 'response'}).pipe(
+            tap((res: HttpResponse<any>) => {
+                this._state.next(res.body);
             })
         );
     }

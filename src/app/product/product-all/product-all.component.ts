@@ -1,6 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core'; 
 
 @Component({
     selector: 'app-product-all',
@@ -10,14 +9,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ProductAllComponent implements OnInit {
 
     constructor(
-        private http: HttpClient,
-        private formBuilder: FormBuilder
+        private http: HttpClient 
     ) { 
     }
 
-    ngOnInit(): void {
-        console.log("HIT ON INIT");
-
+    ngOnInit(): void { 
         this.http.get('/product/all').subscribe({
             next: (data) => {
                 console.log('login data: ', data);
@@ -26,18 +22,5 @@ export class ProductAllComponent implements OnInit {
                 console.log("login err: ", err);
             }
         });
-    }
-
-    submitHandler(): void {
-        console.log("HIT SUBMITTER");
-
-        this.http.get('/product/all').subscribe({
-            next: (data) => {
-                console.log('login data: ', data);
-            },
-            error: (err) => {
-                console.log("login err: ", err);
-            }
-        });
-    }
+    } 
 }

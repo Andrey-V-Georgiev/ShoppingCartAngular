@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {NotificationService} from 'src/app/core/notification.service';
 import {UserService} from '../user.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private userService: UserService,
-        private router: Router
+        private router: Router,
+        public notificationService: NotificationService
     ) {
         this.form = this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(3)]],
@@ -31,11 +33,14 @@ export class LoginComponent implements OnInit {
 
         this.userService.login(formData).subscribe({
             next: (data) => {
-                console.log('login data: ', data);
+                console.log("LOGIN DATA: ", data);
+                
                 this.router.navigate(['/home']);
             },
             error: (err) => {
-                console.log("login err: ", err);
+                console.log("LOGIN ERROR: ", err);
+                console.log("ERROR MESSAGE: ", err.error);
+               
                 this.router.navigate(['/']);
             }
         });
