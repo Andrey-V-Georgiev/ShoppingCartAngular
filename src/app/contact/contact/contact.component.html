@@ -1,5 +1,5 @@
-<div [ngSwitch]="currentCity$ | async">
-
+<div [ngSwitch]="(currentCity$ | async).cityName">
+    <div>{{(currentCity$ | async).cityName}}</div>
     <div class="row">
 
         <div class="col-3">
@@ -11,7 +11,7 @@
                 <button (click)="changeCity('SOFIA')" type="button" class="btn btn-lg btn-outline-success">Office
                     Varna</button>
                 <button (click)="changeCity('PLOVDIV')" type="button" class="btn btn-lg btn-outline-success">Office
-                    Burgas</button> 
+                    Burgas</button>
             </div>
 
             <div id="description">
@@ -24,25 +24,23 @@
 
                 <div class="fst-normal"> Email:</div>
                 <div class="fw-light"> jhgksgh@hslkhfg.com</div>
-                 
+
                 <div class="fst-normal"> Working hours:</div>
                 <div class="fw-light"> Mon-Fri: 09:30 - 17:30 </div>
                 <div class="fw-light"> Sat-Sun: 10:30 - 16:30 </div>
-                    
+
             </div>
         </div>
 
         <div class="col">
-            <div *ngSwitchCase="'SOFIA'">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5429.967270557111!2d23.31745846586174!3d42.69642569520969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa856bf5f0323d%3A0x39f00d2aee5c837e!2sSofia%20Court%20House!5e0!3m2!1sen!2sbg!4v1628716103543!5m2!1sen!2sbg"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <div *ngSwitchCase="'Sofia'">
+                <iframe [src]="url$ | async | safeIframe" width="600" height="450" style="border:0;" allowfullscreen=""
+                    loading="lazy"></iframe>
             </div>
-            <div *ngSwitchCase="'PLOVDIV'">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23667.04529178637!2d24.728477227240308!3d42.14214034010406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14acd1b0e2446a07%3A0x6f92c125661581aa!2sSinging%20Fountains!5e0!3m2!1sen!2sbg!4v1628716621218!5m2!1sen!2sbg"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+            <div *ngSwitchCase="'Plovdiv'">
+                <iframe [src]="url$ | async | safeIframe" width="600" height="450" style="border:0;" allowfullscreen=""
+                    loading="lazy"></iframe>
+            </div> 
         </div>
     </div>
 
