@@ -1,47 +1,36 @@
-<div [ngSwitch]="(currentCity$ | async).cityName">
-    <div>{{(currentCity$ | async).cityName}}</div>
-    <div class="row">
+<div class="row">
 
-        <div class="col-3">
-            <div class="btn-group-vertical">
-                <button (click)="changeCity('SOFIA')" type="button" class="btn btn-lg btn-outline-success">Office
-                    Sofia</button>
-                <button (click)="changeCity('PLOVDIV')" type="button" class="btn btn-lg btn-outline-success">Office
-                    Plovdiv</button>
-                <button (click)="changeCity('SOFIA')" type="button" class="btn btn-lg btn-outline-success">Office
-                    Varna</button>
-                <button (click)="changeCity('PLOVDIV')" type="button" class="btn btn-lg btn-outline-success">Office
-                    Burgas</button>
-            </div>
+    <div class="col-3">
 
-            <div id="description">
-
-                <div class="fst-normal"> Adress:</div>
-                <div class="fw-light"> jhgksgh@hslkhfg.com</div>
-
-                <div class="fst-normal"> Tel.:</div>
-                <div class="fw-light"> 0888 888 888 </div>
-
-                <div class="fst-normal"> Email:</div>
-                <div class="fw-light"> jhgksgh@hslkhfg.com</div>
-
-                <div class="fst-normal"> Working hours:</div>
-                <div class="fw-light"> Mon-Fri: 09:30 - 17:30 </div>
-                <div class="fw-light"> Sat-Sun: 10:30 - 16:30 </div>
-
+        <div class="btn-group-vertical w-100">
+            <div *ngFor="let contact of (contactsAll$ | async)" class="w-100">
+                <button (click)="changeCity(contact.cityName)" type="button" class="btn btn-lg btn-outline-success w-100">
+                   Office {{contact.cityName}}
+                </button>
             </div>
         </div>
 
-        <div class="col">
-            <div *ngSwitchCase="'Sofia'">
-                <iframe [src]="url$ | async | safeIframe" width="600" height="450" style="border:0;" allowfullscreen=""
-                    loading="lazy"></iframe>
-            </div>
-            <div *ngSwitchCase="'Plovdiv'">
-                <iframe [src]="url$ | async | safeIframe" width="600" height="450" style="border:0;" allowfullscreen=""
-                    loading="lazy"></iframe>
-            </div> 
+        <div id="description" *ngIf="currentCity$ | async">
+
+            <div class="fst-normal"> Adress:</div>
+            <div class="fw-light">{{(currentCity$ | async).address}}</div>
+
+            <div class="fst-normal"> Tel.:</div>
+            <div class="fw-light"> {{(currentCity$ | async).tel}}</div>
+
+            <div class="fst-normal"> Email:</div>
+            <div class="fw-light"> {{(currentCity$ | async).email}}</div>
+
+            <div class="fst-normal"> Working hours:</div>
+            <div class="fw-light">Mon-Fri: {{(currentCity$ | async).workingHoursWeek}} </div>
+            <div class="fw-light">Sat-Sun: {{(currentCity$ | async).workingHoursWeekend}}</div>
+
         </div>
+    </div>
+
+    <div class="col" *ngIf="currentCity$ | async">
+        <iframe [src]="(currentCity$ | async).iframeUrl | safeIframe" width="600" height="450" style="border:0;"
+            allowfullscreen="" loading="lazy"></iframe>
     </div>
 
 </div>

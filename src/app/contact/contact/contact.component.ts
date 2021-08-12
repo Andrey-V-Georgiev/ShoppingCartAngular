@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import {NotificationService} from 'src/app/core/services/notification.service';
 import {IContact} from 'src/app/shared/interfaces/contact.interfaces';
 import {ContactService} from '../contact.service';
 
@@ -11,14 +12,23 @@ import {ContactService} from '../contact.service';
 })
 export class ContactComponent implements OnInit {
 
-    currentCity$: Observable<IContact> = this.contactService.getCurrentCity();
-    url$: Observable<string> = this.contactService.getUrl();
+    contactsAll$: Observable<IContact[]> = this.contactService.getCityAll();
+    currentCity$: Observable<IContact> = this.contactService.getCurrentCity(); 
 
     constructor(
-        private contactService: ContactService
+        private contactService: ContactService,
+        private router: Router,
+        private notificationService: NotificationService
     ) { }
 
     ngOnInit(): void {
+        this.contactService.loadContacts().subscribe({
+            error: (err) => {
+                const errorMessage: string = err.error;
+                this.notificationService.setErrorState(errorMessage);
+                this.router.navigateByUrl(this.router.url);
+            }
+        })
     }
 
     changeCity(cityName: string) {

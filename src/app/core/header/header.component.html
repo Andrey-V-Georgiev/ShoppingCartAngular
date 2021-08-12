@@ -2,7 +2,12 @@
     <div class="container-fluid">
 
         <div class="navbar-brand">
-            <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+            <div *ngIf="(isLogged$ | async); else guestHome">
+                <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+            </div>
+            <ng-template #guestHome>
+                <a routerLink="/" class="btn btn-outline-success btn-lg">Home</a>
+            </ng-template>
         </div>
 
         <div *ngIf="(isLogged$ | async); else loggedOut">

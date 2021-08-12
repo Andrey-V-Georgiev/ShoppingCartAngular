@@ -1,8 +1,9 @@
 export interface IContact {
     cityName: string;
-    url: string; 
+    iframeUrl: string; 
     address: string; 
     tel: string; 
     email: string; 
-    workingHours: string; 
+    workingHoursWeek: string; 
+    workingHoursWeekend: string; 
 } 

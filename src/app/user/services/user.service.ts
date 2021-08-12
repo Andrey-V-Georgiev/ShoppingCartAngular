@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
 })
 export class UserService {
 
-    private _state: BehaviorSubject<any> = new BehaviorSubject(undefined);
+    private _state: BehaviorSubject<IUserLogin> = new BehaviorSubject(undefined);
     private currentUser$: Observable<IUserLogin> = this._state.asObservable();
 
     constructor(
