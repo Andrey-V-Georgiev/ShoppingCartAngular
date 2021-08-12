@@ -1,5 +1,31 @@
-<div class="container" id="products-container">
-    <div class="row justify-content-md-center  rounded">
-        <img src="https://www.kangarooselfstorage.co.uk/wp-content/uploads/2018/12/Business-Storage-Archive-Storage-1.jpg" class="img-fluid" alt="...">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let product of (productsAll$ | async)">
+        <div *ngIf="(productsAll$ | async)">
+            <div class="card-group">
+
+                <div class="card">
+                    <img [src]="product.pictureUrl" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">{{product.description | shorten}}
+                            <a [routerLink]="['/product/details', product.id]" class="card-link">... more details</a>
+                        </p>
+                        <div *ngIf="(isLogged$ | async); else guestPrice">
+                            <a class="btn btn-md btn-warning">
+                                <strong>Add to cart:</strong> {{product.price}}$
+                            </a>
+                        </div>
+                        <ng-template #guestPrice>
+                            <a class="btn btn-md btn-warning" disabled>
+                                <strong>Price:</strong> {{product.price}}$
+                            </a>
+                        </ng-template>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 </div>
+ 

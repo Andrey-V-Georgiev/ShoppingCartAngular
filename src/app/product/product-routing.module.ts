@@ -12,8 +12,7 @@ const routes: Routes = [
         path: '',
         children: [
             {
-                path: '',
-                pathMatch: 'full',
+                path: 'details/:id', 
                 component: ProductDetailsComponent 
             },
             {

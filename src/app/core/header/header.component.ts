@@ -2,7 +2,7 @@ import {HttpResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {NotificationState} from 'src/app/shared/interfaces/notification-state.interfaces';
+import {INotificationState} from 'src/app/shared/interfaces/notification-state.interfaces';
 import {IWeather} from 'src/app/shared/interfaces/weather.interfaces';
 import {UserService} from 'src/app/user/services/user.service';
 import {AuthService} from '../services/auth.service';
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
     isLogged$: Observable<Boolean | null> = this.authService.isLogged();
     userUsername$: Observable<string | null> = this.authService.getUsername();
-    notificationState$: Observable<NotificationState> = this.notificationService.getNotificationState();
+    notificationState$: Observable<INotificationState> = this.notificationService.getNotificationState();
     weather$: Observable<IWeather> = this.weatherService.getWeather();
 
     constructor(

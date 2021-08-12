@@ -9,8 +9,7 @@ const routes: Routes = [
         path: '',
         children: [
             {
-                path: '',
-                pathMatch: 'full',
+                path: '', 
                 component: HomeGuestComponent
             },
             {

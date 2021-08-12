@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {NotificationState} from '../../shared/interfaces/notification-state.interfaces';
+import {INotificationState} from '../../shared/interfaces/notification-state.interfaces';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NotificationService {
 
-    private _state: BehaviorSubject<NotificationState> = new BehaviorSubject(this.generateInitialState());
-    private notificationState$: Observable<NotificationState> = this._state.asObservable();
+    private _state: BehaviorSubject<INotificationState> = new BehaviorSubject(this.generateInitialState());
+    private notificationState$: Observable<INotificationState> = this._state.asObservable();
 
     constructor(
     ) { }
@@ -18,20 +18,20 @@ export class NotificationService {
     }
 
     generateInitialState() {
-        const initialState: NotificationState = {
+        const initialState: INotificationState = {
             notificationMessage: null,
             className: "alert alert-light text-center col-6"
-        } as NotificationState;
+        } as INotificationState;
 
         return initialState;
     }
 
     setSuccessState(message: string) {
 
-        let nextState: NotificationState = {
+        let nextState: INotificationState = {
             notificationMessage: message,
             className: "alert alert-success text-center col-6"
-        } as NotificationState;
+        } as INotificationState;
 
         this._state.next(nextState);
 
@@ -41,10 +41,10 @@ export class NotificationService {
 
     setErrorState(message: string) {
 
-        let nextState: NotificationState = {
+        let nextState: INotificationState = {
             notificationMessage: message,
             className: "alert alert-danger text-center col-6"
-        } as NotificationState;
+        } as INotificationState;
 
         this._state.next(nextState);
 

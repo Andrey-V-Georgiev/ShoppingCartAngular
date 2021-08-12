@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {NotificationService} from 'src/app/core/services/notification.service';
 import {IContact} from 'src/app/shared/interfaces/contact.interfaces';
-import {ContactService} from '../contact.service';
+import {ContactService} from '../services/contact.service';
 
 @Component({
     selector: 'app-contact',

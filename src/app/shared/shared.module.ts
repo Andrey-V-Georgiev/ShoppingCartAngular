@@ -1,16 +1,19 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SafeIframe} from './pipes/safe-iframe.pipes';
+import {ShortenTextPipe} from './pipes/shorten-text.pipes';
 
 @NgModule({
     declarations: [
-        SafeIframe
+        SafeIframe,
+        ShortenTextPipe
     ],
     imports: [
         CommonModule
     ],
     exports: [
-        SafeIframe
+        SafeIframe,
+        ShortenTextPipe
     ]
 })
 export class SharedModule { }
