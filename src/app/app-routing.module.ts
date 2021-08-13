@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router'; 
+import {ContactComponent} from './contact/contact/contact.component';
 import {AuthGuard} from './core/guards/auth.guard';
 import {HomeGuestComponent} from './home/home-guest/home-guest.component';
 import {HomeUserComponent} from './home/home-user/home-user.component';
@@ -26,8 +27,8 @@ const routes: Routes = [
                 loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
             },
             { 
-                path: 'contact',
-                loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+                path: 'contact', 
+                component: ContactComponent
             }
         ]
     }

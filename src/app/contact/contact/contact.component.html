@@ -4,8 +4,9 @@
 
         <div class="btn-group-vertical w-100">
             <div *ngFor="let contact of (contactsAll$ | async)" class="w-100">
-                <button (click)="changeCity(contact.cityName)" type="button" class="btn btn-lg btn-outline-success w-100">
-                   Office {{contact.cityName}}
+                <button (click)="changeCity(contact.cityName)" type="button"
+                    class="btn btn-lg btn-outline-success w-100">
+                    Office {{contact.cityName}}
                 </button>
             </div>
         </div>
@@ -28,9 +29,16 @@
         </div>
     </div>
 
-    <div class="col" *ngIf="currentCity$ | async">
+    <div class="col" *ngIf="currentCity$ | async; else spinner">
         <iframe [src]="(currentCity$ | async).iframeUrl | safeIframe" width="600" height="450" style="border:0;"
             allowfullscreen="" loading="lazy"></iframe>
     </div>
-
+    <ng-template #spinner>
+        <div id="spinner" class="text-center col-10">
+            <div class="spinner-border text-success" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </ng-template>
+    
 </div>

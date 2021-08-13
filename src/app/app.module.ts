@@ -12,17 +12,21 @@ import {HomeModule} from './home/home.module';
 import {appInterceptorProvider} from './core/interceptors/app.interceptor';
 import {tokenInterceptorProvider} from './core/interceptors/token.interceptor';
 import {UserService} from './user/services/user.service';
+import {ContactComponent} from './contact/contact/contact.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
     declarations: [
-        AppComponent 
+        AppComponent,
+        ContactComponent 
     ],
     imports: [ 
         BrowserModule,
         AppRoutingModule, 
         CoreModule,
         UserModule,
-        HomeModule,  
+        HomeModule, 
+        SharedModule, 
         HttpClientModule, 
     ],
     providers: [ 
