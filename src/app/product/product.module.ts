@@ -9,6 +9,7 @@ import {ProductService} from './services/product.service';
 import {SharedModule} from '../shared/shared.module';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { ProductAddComponent } from './product-add/product-add.component'; 
+import {EventEmitterProductService} from './services/event-emitter-product.service';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ProductAddComponent } from './product-add/product-add.component';
         SharedModule
     ],
     providers: [
-        ProductService
+        ProductService,
+        EventEmitterProductService
     ]
 })
 

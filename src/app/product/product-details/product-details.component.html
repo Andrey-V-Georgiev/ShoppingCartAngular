@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div *ngIf="(isAdmin$ | async); else goBack">
                             <button routerLink="/product/all" class="btn btn-lg btn-outline-secondary">Go back</button>
-                            <button [routerLink]="['/product/edit', (productsDetails$ | async).id]" class="btn btn-lg btn-warning">Edit</button>
+                            <button  class="btn btn-lg btn-warning">Edit</button>
                             <button *ngIf="(productsDetails$ | async) as product" (click)="productRemove(product.id)" class="btn btn-lg btn-danger">Delete</button>
                         </div>
                         <ng-template #goBack>

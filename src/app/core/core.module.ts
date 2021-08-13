@@ -11,7 +11,7 @@ import {AuthService} from './services/auth.service';
 import {WeatherService} from './services/weather.service'; 
 import {ProductModule} from '../product/product.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'; 
-import {EventEmitterService} from './services/event-emmiter.service';
+import {EventEmitterCoreService} from './services/event-emmiter-core.service';
 
 
 @NgModule({
@@ -33,7 +33,7 @@ import {EventEmitterService} from './services/event-emmiter.service';
     WeatherService,
     AuthGuard,
     AdminGuard,
-    EventEmitterService
+    EventEmitterCoreService
   ] 
 })
 

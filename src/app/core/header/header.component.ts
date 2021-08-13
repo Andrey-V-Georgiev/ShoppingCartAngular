@@ -11,7 +11,7 @@ import {WeatherService} from '../services/weather.service';
 import {filter} from 'rxjs/operators';
 import Constants from 'src/app/shared/constants/constants';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {EventEmitterService} from '../services/event-emmiter.service';
+import {EventEmitterCoreService} from '../services/event-emmiter-core.service';
 
 @Component({
     selector: 'app-header',
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
         private weatherService: WeatherService,
         private router: Router,
         private formBuilder: FormBuilder,
-        private eventEmitterService: EventEmitterService
+        private eventEmitterService: EventEmitterCoreService
     ) {
         this.form = this.formBuilder.group({
             search: ['', []]

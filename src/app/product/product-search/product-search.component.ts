@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from 'src/app/core/services/auth.service';
-import {EventEmitterService} from 'src/app/core/services/event-emmiter.service';
+import {EventEmitterCoreService} from 'src/app/core/services/event-emmiter-core.service';
 import {NotificationService} from 'src/app/core/services/notification.service'; 
 import {IProduct} from 'src/app/shared/interfaces/product.interfaces';
 import {ProductService} from '../services/product.service';
@@ -22,7 +22,7 @@ export class ProductSearchComponent implements OnInit {
         private router: Router,
         private notificationService: NotificationService,
         private authService: AuthService,
-        private eventEmitterService: EventEmitterService
+        private eventEmitterService: EventEmitterCoreService
     ) { }
 
     ngOnInit(): void {
