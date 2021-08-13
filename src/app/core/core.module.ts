@@ -8,8 +8,7 @@ import {NotificationService} from './services/notification.service';
 import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 import {AuthService} from './services/auth.service';
-import {WeatherService} from './services/weather.service';
-import {ProductModule} from '../product/product.module';
+import {WeatherService} from './services/weather.service'; 
 
 
 @NgModule({
@@ -20,8 +19,7 @@ import {ProductModule} from '../product/product.module';
   imports: [
     CommonModule,
     RouterModule,
-    UserModule,
-    ProductModule  
+    UserModule 
   ],
   providers: [
     NotificationService,

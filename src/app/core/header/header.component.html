@@ -44,9 +44,9 @@
     <div id="notification" [className]="(notificationState$ | async).className" role="alert">
         {{(notificationState$ | async).notificationMessage}}
     </div>
- 
-    <div *ngIf="(isLogged$ | async); else tempCelsius">
-        <form class="d-flex">
+  
+    <div *ngIf="showSearchBar; else tempCelsius">
+        <form id="search-form" class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>

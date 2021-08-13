@@ -10,4 +10,5 @@ export default class Constants {
 
     public static readonly WEATHER_API_URL: string = "http://api.openweathermap.org/data/2.5/weather?id=727011&units=metric&appid=e222cd92a8df417eca6998c271a58972";
  
+    public static readonly PRODUCTS_ALL_URL: string = "/product/all";
 }    
