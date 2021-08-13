@@ -8,6 +8,12 @@ const emailValidator = (control: AbstractControl): ValidationErrors | null => {
     return isValid ? null : {emailValidation: true};
 }
 
+const priceValidator = (control: AbstractControl): ValidationErrors | null => {
+    const priceInput: string = control.value;
+    const isValid: boolean = priceInput.match(Constants.PRICE_REGEX_PATTERN) != null;
+    return isValid ? null : {priceValidation: true};
+}
+
 const confirmPasswordValidator = (control: AbstractControl): ValidationErrors | null => {
     const formGroup: FormGroup | FormArray | null = control.parent;
     const passwordInput: string = formGroup?.get("password")?.value;
@@ -16,4 +22,4 @@ const confirmPasswordValidator = (control: AbstractControl): ValidationErrors | 
     return match ? null : {confirmPasswordValidation: true};
 }
 
-export {emailValidator, confirmPasswordValidator}
+export {emailValidator, confirmPasswordValidator, priceValidator}

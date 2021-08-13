@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    submitHandler(): void {
+    register(): void {
         const data = this.form.value;
         this.userService.register(data).subscribe({
             next: (message) => {

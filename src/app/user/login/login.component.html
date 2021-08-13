@@ -2,8 +2,7 @@
     <div class="row justify-content-md-center">
 
         <div class="col-4">
-
-            <form id="login-form" [formGroup]="form" (ngSubmit)="submitHandler()">
+            <form id="login-form" [formGroup]="form" (ngSubmit)="login()">
 
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
@@ -12,10 +11,11 @@
                         id="username" type="text" formControlName="username">
                 </div>
                 <div *ngIf="form.get('username').touched && form.get('username').invalid">
-                    <p class="text-danger fw-lighter" *ngIf="form.get('username').errors?.required">Username is required
+                    <p class="text-danger fw-lighter" *ngIf="form.get('username').errors?.required">
+                        Username is required
                     </p>
-                    <p class="text-danger fw-lighter" *ngIf="form.get('username').errors?.minlength">Username must be at
-                        least 3 character
+                    <p class="text-danger fw-lighter" *ngIf="form.get('username').errors?.minlength">
+                        Username must be at least 3 character
                     </p>
                 </div>
 
@@ -26,16 +26,18 @@
                         type="password" id="password" name="password" formControlName="password">
                 </div>
                 <div *ngIf="form.get('password').touched && form.get('password').invalid">
-                    <p class="text-danger fw-lighter" *ngIf="form.get('password').errors?.required">Password is required
+                    <p class="text-danger fw-lighter" *ngIf="form.get('password').errors?.required">
+                        Password is required
                     </p>
-                    <p class="text-danger fw-lighter" *ngIf="form.get('password').errors?.minlength">Password must be at
-                        least 3 character
+                    <p class="text-danger fw-lighter" *ngIf="form.get('password').errors?.minlength">
+                        Password must be at least 3 character
                     </p>
                 </div>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-success">Login</button>
+                    <button [disabled]="form.invalid" class="btn btn-success">Login</button>
                 </div>
+
             </form>
         </div>
 

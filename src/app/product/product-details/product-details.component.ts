@@ -15,6 +15,7 @@ export class ProductDetailsComponent implements OnInit {
 
     productsDetails$: Observable<IProduct> = this.productService.getPruductDetails();
     isLogged$: Observable<Boolean | null> = this.authService.isLogged();
+    isAdmin$: Observable<Boolean> = this.authService.isAdmin();
 
     constructor(
         private productService: ProductService,
@@ -25,11 +26,23 @@ export class ProductDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        const id = this.route.snapshot.params['id']
+        const id = this.route.snapshot.params['id'];
         this.productService.loadPruductById(id).subscribe({
             error: (err) => {
-                console.log(err);
-                
+                const errorMessage: string = err.error;
+                this.notificationService.setErrorState(errorMessage);
+                this.router.navigate(['/product/all']);
+            }
+        });
+    }
+
+    productRemove(id: string) { 
+        this.productService.productRemove(id).subscribe({
+            next: (message: string) => {
+                this.notificationService.setSuccessState(message);
+                this.router.navigate(['/product/all']);
+            },
+            error: (err) => {
                 const errorMessage: string = err.error;
                 this.notificationService.setErrorState(errorMessage);
                 this.router.navigate(['/product/all']);

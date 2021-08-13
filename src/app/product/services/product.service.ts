@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core'; 
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import Constants from 'src/app/shared/constants/constants';
@@ -42,10 +42,18 @@ export class ProductService {
         );
     }
 
-    searchProducts(keyword: string) {
+    searchProducts(keyword: string): Observable<IProduct[]> {
         const safeKeyword: string = keyword.length == 0 ? Constants.STAR : keyword
         return this.http.get<IProduct[]>(`/product/search/${safeKeyword}`).pipe(
             tap((data: IProduct[]) => this._stateSearch.next(data))
         );
+    }
+
+    productAdd(data: any): Observable<IProduct> {
+        return this.http.post<IProduct>('/product/add', data);
+    }
+
+    productRemove(id: string): Observable<string> {
+        return this.http.delete<string>(`/product/remove/${id}`);
     }
 }

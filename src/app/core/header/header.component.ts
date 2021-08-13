@@ -59,9 +59,8 @@ export class HeaderComponent implements OnInit {
 
     logout(): void {
         this.userService.logout().subscribe({
-            next: (res: HttpResponse<any>) => {
-                const message: string = String(res.body);
-                this.notificationService.setSuccessState(message);
+            next: (data) => { 
+                this.notificationService.setSuccessState(data);
                 this.router.navigate(['/']);
             },
             error: (err) => {

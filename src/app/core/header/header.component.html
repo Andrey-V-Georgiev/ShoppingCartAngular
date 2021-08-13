@@ -6,7 +6,7 @@
                 <div *ngIf="(isAdmin$ | async); else userMeny">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                         <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
-                        <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Add product</a> 
+                        <a routerLink="/product/add" class="btn btn-outline-success btn-lg">Add product</a> 
                     </div>
                 </div>
                 <ng-template #userMeny>

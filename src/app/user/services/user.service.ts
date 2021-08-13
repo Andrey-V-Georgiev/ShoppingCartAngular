@@ -1,4 +1,4 @@
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IUserLogin} from '../../shared/interfaces/user.interfaces';
@@ -10,7 +10,7 @@ import {tap} from 'rxjs/operators';
 })
 export class UserService {
 
-    private _stateUser: BehaviorSubject<IUserLogin> = new BehaviorSubject(undefined); 
+    private _stateUser: BehaviorSubject<IUserLogin> = new BehaviorSubject(undefined);
 
     constructor(
         private http: HttpClient
@@ -24,20 +24,16 @@ export class UserService {
         return this.http.post<string>('/auth/register', data);
     }
 
-    login(data: any): Observable<any> {
-        return this.http.post('/auth/login', data, {observe: 'response'}).pipe(
-            tap((res: HttpResponse<any>) => { 
-                this._stateUser.next(res.body);
-            })
+    login(data: any): Observable<IUserLogin> {
+        return this.http.post<IUserLogin>('/auth/login', data).pipe(
+            tap((data: IUserLogin) => this._stateUser.next(data))
         );
     }
 
-    logout(): Observable<any> { 
-        const jwtToken = this._stateUser.value?.token; 
-        return this.http.post('/auth/logout', jwtToken, {observe: 'response'}).pipe(
-            tap((res: HttpResponse<any>) => {
-                this._stateUser.next(undefined);
-            })
+    logout(): Observable<any> {
+        const jwtToken = this._stateUser.value?.token;
+        return this.http.post('/auth/logout', jwtToken).pipe(
+            tap(() => this._stateUser.next(undefined))
         );
     }
 }

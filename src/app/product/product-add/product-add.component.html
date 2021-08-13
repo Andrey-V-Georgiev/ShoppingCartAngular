@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+
+        <div class="col-4">
+            <form id="login-form" [formGroup]="form" (ngSubmit)="productAdd()">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Product name</label>
+                    <input
+                        [ngClass]="form.get('name').touched ? (form.get('name').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        id="name" type="text" formControlName="name">
+                </div>
+                <div *ngIf="form.get('name').touched && form.get('name').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('name').errors?.required">
+                        Product name is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('name').errors?.minlength">
+                        Product name must be at least 3 character
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea
+                        [ngClass]="form.get('description').touched ? (form.get('description').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        id="description" rows="3" name="description" formControlName="description">
+                    </textarea>
+                </div>
+                <div *ngIf="form.get('description').touched && form.get('description').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('description').errors?.required">
+                        Description is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('description').errors?.minlength">
+                        Description must be at least 3 character
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pictureUrl" class="form-label">Picture Url</label>
+                    <input
+                        [ngClass]="form.get('pictureUrl').touched ? (form.get('pictureUrl').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        id="pictureUrl" type="text" formControlName="pictureUrl">
+                </div>
+                <div *ngIf="form.get('pictureUrl').touched && form.get('pictureUrl').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('pictureUrl').errors?.required">
+                        Picture Url is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('pictureUrl').errors?.minlength">
+                        Picture Url must be at least 3 character
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input
+                        [ngClass]="form.get('price').touched ? (form.get('price').invalid ? 'form-control is-invalid' : 'form-control is-valid') : 'form-control'"
+                        type="text" id="price" name="price" formControlName="price">
+                </div>
+                <div *ngIf="form.get('price').touched && form.get('price').invalid">
+                    <p class="text-danger fw-lighter" *ngIf="form.get('price').errors?.required">
+                        Price is required
+                    </p>
+                    <p class="text-danger fw-lighter" *ngIf="form.get('price').errors?.minlength">
+                        Price must be at least 1 symbol and valid number
+                    </p>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button [disabled]="form.invalid" class="btn btn-success">Add product</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
