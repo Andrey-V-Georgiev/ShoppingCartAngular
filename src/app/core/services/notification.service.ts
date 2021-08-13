@@ -7,14 +7,13 @@ import {INotificationState} from '../../shared/interfaces/notification-state.int
 })
 export class NotificationService {
 
-    private _state: BehaviorSubject<INotificationState> = new BehaviorSubject(this.generateInitialState());
-    private notificationState$: Observable<INotificationState> = this._state.asObservable();
+    private _stateNotification: BehaviorSubject<INotificationState> = new BehaviorSubject(this.generateInitialState()); 
 
     constructor(
     ) { }
 
-    getNotificationState() { 
-        return this.notificationState$;
+    getNotificationState(): Observable<INotificationState> { 
+        return this._stateNotification;
     }
 
     generateInitialState() {
@@ -33,10 +32,10 @@ export class NotificationService {
             className: "alert alert-success text-center col-6"
         } as INotificationState;
 
-        this._state.next(nextState);
+        this._stateNotification.next(nextState);
 
         /* Hide the notification after few seconds */
-        setTimeout(() => this._state.next(this.generateInitialState()), 3000);
+        setTimeout(() => this._stateNotification.next(this.generateInitialState()), 3000);
     }
 
     setErrorState(message: string) {
@@ -46,9 +45,9 @@ export class NotificationService {
             className: "alert alert-danger text-center col-6"
         } as INotificationState;
 
-        this._state.next(nextState);
+        this._stateNotification.next(nextState);
 
         /* Hide the notification after few seconds */
-        setTimeout(() => this._state.next(this.generateInitialState()), 3000);
+        setTimeout(() => this._stateNotification.next(this.generateInitialState()), 3000);
     }
 }

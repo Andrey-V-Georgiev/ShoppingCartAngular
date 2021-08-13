@@ -2,6 +2,7 @@ import {HttpResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import {ProductService} from 'src/app/product/services/product.service';
 import {INotificationState} from 'src/app/shared/interfaces/notification-state.interfaces';
 import {IWeather} from 'src/app/shared/interfaces/weather.interfaces';
 import {UserService} from 'src/app/user/services/user.service';
@@ -19,18 +20,19 @@ export class HeaderComponent implements OnInit {
     isLogged$: Observable<Boolean | null> = this.authService.isLogged();
     userUsername$: Observable<string | null> = this.authService.getUsername();
     notificationState$: Observable<INotificationState> = this.notificationService.getNotificationState();
-    weather$: Observable<IWeather> = this.weatherService.getWeather();
+    weather$: Observable<IWeather> = this.weatherService.getWeather(); 
 
     constructor(
         private userService: UserService,
         private notificationService: NotificationService,
         private authService: AuthService,
         private weatherService: WeatherService,
-        private router: Router
+        private router: Router,
+        private productService: ProductService
     ) { }
 
     ngOnInit(): void {
-        this.weatherService.setWeather();
+        this.weatherService.setWeather(); 
     }
 
     logout(): void {
@@ -43,6 +45,7 @@ export class HeaderComponent implements OnInit {
             error: (err) => {
                 const errorMessage: string = err.error;
                 this.notificationService.setErrorState(errorMessage);
+                this.router.navigateByUrl(this.router.url);
             }
         });
     }

@@ -9,6 +9,7 @@ import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 import {AuthService} from './services/auth.service';
 import {WeatherService} from './services/weather.service';
+import {ProductModule} from '../product/product.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {WeatherService} from './services/weather.service';
   imports: [
     CommonModule,
     RouterModule,
-    UserModule  
+    UserModule,
+    ProductModule  
   ],
   providers: [
     NotificationService,

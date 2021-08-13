@@ -10,15 +10,14 @@ import {tap} from 'rxjs/operators';
 })
 export class UserService {
 
-    private _state: BehaviorSubject<IUserLogin> = new BehaviorSubject(undefined);
-    private currentUser$: Observable<IUserLogin> = this._state.asObservable();
+    private _stateUser: BehaviorSubject<IUserLogin> = new BehaviorSubject(undefined); 
 
     constructor(
         private http: HttpClient
     ) { }
 
     getCurrentUser(): Observable<IUserLogin> {
-        return this.currentUser$;
+        return this._stateUser;
     }
 
     register(data: any): Observable<any> {
@@ -28,26 +27,17 @@ export class UserService {
     login(data: any): Observable<any> {
         return this.http.post('/auth/login', data, {observe: 'response'}).pipe(
             tap((res: HttpResponse<any>) => { 
-                this._state.next(res.body);
+                this._stateUser.next(res.body);
             })
         );
     }
 
-    logout(): Observable<any> {
-
-        let jwtToken: string = '';
-        this.currentUser$.subscribe({
-            next: (user) => {
-                if (user != undefined) {
-                    jwtToken = user.token
-                }
-            }
-        });
-
+    logout(): Observable<any> { 
+        const jwtToken = this._stateUser.value?.token; 
         return this.http.post('/auth/logout', jwtToken, {observe: 'response'}).pipe(
             tap((res: HttpResponse<any>) => {
-                this._state.next(undefined);
+                this._stateUser.next(undefined);
             })
-        );;
+        );
     }
 }

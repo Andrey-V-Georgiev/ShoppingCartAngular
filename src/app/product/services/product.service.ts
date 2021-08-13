@@ -9,33 +9,30 @@ import {IProduct} from 'src/app/shared/interfaces/product.interfaces';
 })
 export class ProductService {
 
-    private _stateAll: BehaviorSubject<IProduct[]> = new BehaviorSubject(undefined);
-    private productsAll$: Observable<IProduct[]> = this._stateAll.asObservable();
-
-    private _stateDetails: BehaviorSubject<IProduct> = new BehaviorSubject(undefined);
-    private productsDetails$: Observable<IProduct> = this._stateDetails.asObservable();
+    private _stateAll: BehaviorSubject<IProduct[]> = new BehaviorSubject(undefined); 
+    private _stateDetails: BehaviorSubject<IProduct> = new BehaviorSubject(undefined);  
 
     constructor(
         private http: HttpClient
     ) { }
 
     getAllProducts(): Observable<IProduct[]> {
-        return this.productsAll$;
-    }   
+        return this._stateAll;
+    }
 
     getPruductDetails(): Observable<IProduct> {
-        return this.productsDetails$;
+        return this._stateDetails;
     } 
-    
+
     loadPruductById(id: string): Observable<IProduct> {
         return this.http.get<IProduct>(`/product/details/${id}`).pipe(
             tap((data: IProduct) => this._stateDetails.next(data))
         );
     }
 
-    loadAllProducts(): Observable<IProduct[]> {
+    loadAllProducts(): Observable<IProduct[]> { 
         return this.http.get<IProduct[]>('/product/all').pipe(
             tap((data: IProduct[]) => this._stateAll.next(data))
         );
-    }
+    } 
 }

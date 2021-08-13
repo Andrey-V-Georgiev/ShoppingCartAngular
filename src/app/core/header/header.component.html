@@ -29,19 +29,28 @@
         </ng-template>
     </div>
 </nav>
+
 <nav class="navbar navbar-light bg-transparent">
-    <div class="alert alert-light col-1"> </div>
 
-    <div id="notification" [className]="(notificationState$ | async).className" role="alert">
-        {{(notificationState$ | async).notificationMessage}}
-    </div>
-
-    <div *ngIf="(isLogged$ | async); else tempCelsius">
+    <div *ngIf="(isLogged$ | async); else emptyDiv">
         <div id="username" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">
             Welcome, {{userUsername$ | async}}
         </div>
     </div>
+    <ng-template #emptyDiv>
+        <div class="alert alert-light col-1"> </div>
+    </ng-template>
 
+    <div id="notification" [className]="(notificationState$ | async).className" role="alert">
+        {{(notificationState$ | async).notificationMessage}}
+    </div>
+ 
+    <div *ngIf="(isLogged$ | async); else tempCelsius">
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
     <ng-template #tempCelsius>
         <div id="celsius" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">
             <div *ngIf="(weather$ | async)">
@@ -49,4 +58,5 @@
             </div>
         </div>
     </ng-template>
+
 </nav>

@@ -9,22 +9,19 @@ import {IContact} from '../../shared/interfaces/contact.interfaces';
 })
 export class ContactService {
 
-    private _stateAll: BehaviorSubject<IContact[]> = new BehaviorSubject(undefined);
-    private contactsAll$: Observable<IContact[]> = this._stateAll.asObservable();
-
-    private _stateCity: BehaviorSubject<IContact> = new BehaviorSubject(undefined);
-    private currentCity$: Observable<IContact> = this._stateCity.asObservable();
+    private _stateAll: BehaviorSubject<IContact[]> = new BehaviorSubject(undefined); 
+    private _stateCity: BehaviorSubject<IContact> = new BehaviorSubject(undefined); 
 
     constructor(
         private http: HttpClient
     ) { }
 
     getCityAll(): Observable<IContact[]> {
-        return this.contactsAll$;
+        return this._stateAll;
     }
 
     getCurrentCity(): Observable<IContact> {
-        return this.currentCity$;
+        return this._stateCity;
     }
 
     loadContacts(): Observable<IContact[]> {

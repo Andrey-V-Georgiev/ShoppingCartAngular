@@ -10,21 +10,20 @@ import {IWeather} from 'src/app/shared/interfaces/weather.interfaces';
 })
 export class WeatherService {
 
-    private _state: BehaviorSubject<any> = new BehaviorSubject(undefined);
-    private weather$: Observable<IWeather> = this._state.asObservable();
+    private _stateWeather: BehaviorSubject<IWeather> = new BehaviorSubject(undefined); 
 
     constructor(
         private http: HttpClient
     ) { }
 
     getWeather(): Observable<IWeather> {
-        return this.weather$;
+        return this._stateWeather;
     }
 
     setWeather(): void {
         this.http.get(Constants.WEATHER_API_URL).subscribe({
-            next: (data) => {
-                this._state.next(data);
+            next: (data: IWeather) => {
+                this._stateWeather.next(data);
             }
         });
     }
