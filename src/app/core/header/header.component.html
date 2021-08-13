@@ -3,7 +3,15 @@
 
         <div class="navbar-brand">
             <div *ngIf="(isLogged$ | async); else guestHome">
-                <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+                <div *ngIf="(isAdmin$ | async); else userMeny">
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+                        <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Add product</a> 
+                    </div>
+                </div>
+                <ng-template #userMeny>
+                    <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+                </ng-template>
             </div>
             <ng-template #guestHome>
                 <a routerLink="/" class="btn btn-outline-success btn-lg">Home</a>

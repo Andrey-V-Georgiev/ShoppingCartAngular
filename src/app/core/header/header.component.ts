@@ -10,7 +10,7 @@ import {NotificationService} from '../services/notification.service';
 import {WeatherService} from '../services/weather.service';
 import {filter} from 'rxjs/operators';
 import Constants from 'src/app/shared/constants/constants';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {EventEmitterService} from '../services/event-emmiter.service';
 
 @Component({
@@ -20,16 +20,16 @@ import {EventEmitterService} from '../services/event-emmiter.service';
 })
 export class HeaderComponent implements OnInit {
 
-    isLogged$: Observable<Boolean | null> = this.authService.isLogged();
-    userUsername$: Observable<string | null> = this.authService.getUsername();
+    isLogged$: Observable<Boolean> = this.authService.isLogged();
+    isAdmin$: Observable<Boolean> = this.authService.isAdmin();
+    userUsername$: Observable<string> = this.authService.getUsername();
     notificationState$: Observable<INotificationState> = this.notificationService.getNotificationState();
     weather$: Observable<IWeather> = this.weatherService.getWeather();
-    form: FormGroup;
-
     showSearchBar: boolean = false;
     subscriber: Subscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
         this.showSearchBar = event.url == Constants.PRODUCTS_ALL_URL || event.url == Constants.PRODUCTS_SEARCH_URL;
     });
+    form: FormGroup;
 
     constructor(
         private userService: UserService,
