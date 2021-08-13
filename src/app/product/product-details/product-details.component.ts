@@ -3,8 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from 'src/app/core/services/auth.service';
 import {NotificationService} from 'src/app/core/services/notification.service';
-import {IProduct} from 'src/app/shared/interfaces/product.interfaces';
-import {EventEmitterProductService} from '../services/event-emitter-product.service';
+import {IProduct} from 'src/app/shared/interfaces/product.interfaces'; 
 import {ProductService} from '../services/product.service';
 
 @Component({
@@ -23,8 +22,7 @@ export class ProductDetailsComponent implements OnInit {
         private router: Router,
         private notificationService: NotificationService,
         private authService: AuthService,
-        private route: ActivatedRoute,
-        private eventEmitterService: EventEmitterProductService
+        private route: ActivatedRoute 
     ) { }
 
     ngOnInit(): void {
@@ -52,13 +50,7 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
 
-    productEdit(id: string) { 
-
-        console.log('ID: ', id);
-        
-
-        /* First emmit the event and then change the route */
-        this.eventEmitterService.onProductEdit(id);
-        this.router.navigateByUrl('/product/edit');
+    productEdit(id: string) {   
+        this.router.navigateByUrl(`/product/edit/${id}`); 
     }
 }

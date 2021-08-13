@@ -56,4 +56,10 @@ export class ProductService {
     productRemove(id: string): Observable<string> {
         return this.http.delete<string>(`/product/remove/${id}`);
     }
+
+    productEdit(data: any): Observable<IProduct> {
+        return this.http.put<IProduct>(`/product/edit/${data.id}`, data).pipe(
+            tap((data: IProduct) => this._stateDetails.next(data))
+        );
+    }
 }

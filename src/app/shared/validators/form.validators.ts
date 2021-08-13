@@ -10,7 +10,7 @@ const emailValidator = (control: AbstractControl): ValidationErrors | null => {
 
 const priceValidator = (control: AbstractControl): ValidationErrors | null => {
     const priceInput: string = control.value;
-    const isValid: boolean = priceInput.match(Constants.PRICE_REGEX_PATTERN) != null;
+    const isValid: boolean = /^[0-9]+(\.[0-9]{1,2})?$/.test(priceInput);
     return isValid ? null : {priceValidation: true};
 }
 

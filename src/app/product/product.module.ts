@@ -8,8 +8,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {ProductService} from './services/product.service';
 import {SharedModule} from '../shared/shared.module';
 import { ProductSearchComponent } from './product-search/product-search.component';
-import { ProductAddComponent } from './product-add/product-add.component'; 
-import {EventEmitterProductService} from './services/event-emitter-product.service';
+import { ProductAddComponent } from './product-add/product-add.component';  
 
 
 @NgModule({
@@ -28,8 +27,7 @@ import {EventEmitterProductService} from './services/event-emitter-product.servi
         SharedModule
     ],
     providers: [
-        ProductService,
-        EventEmitterProductService
+        ProductService 
     ]
 })
 
