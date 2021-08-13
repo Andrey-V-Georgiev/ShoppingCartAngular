@@ -15,17 +15,15 @@ export class ProductAllComponent implements OnInit {
 
     productsAll$: Observable<IProduct[]> = this.productService.getAllProducts();
     isLogged$: Observable<Boolean | null> = this.authService.isLogged();
-    isSearchRoute: boolean = false;
 
     constructor(
         private productService: ProductService,
         private router: Router,
         private notificationService: NotificationService,
         private authService: AuthService
-    ) {
-    }
+    ) { }
 
-    ngOnInit(): void { 
+    ngOnInit(): void {
         this.productService.loadAllProducts().subscribe({
             error: (err) => {
                 const errorMessage: string = err.error;
@@ -33,5 +31,5 @@ export class ProductAllComponent implements OnInit {
                 this.router.navigateByUrl(this.router.url);
             }
         });
-    } 
+    }
 }

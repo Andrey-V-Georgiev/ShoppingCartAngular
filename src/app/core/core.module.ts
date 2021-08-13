@@ -9,6 +9,9 @@ import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 import {AuthService} from './services/auth.service';
 import {WeatherService} from './services/weather.service'; 
+import {ProductModule} from '../product/product.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'; 
+import {EventEmitterService} from './services/event-emmiter.service';
 
 
 @NgModule({
@@ -19,14 +22,18 @@ import {WeatherService} from './services/weather.service';
   imports: [
     CommonModule,
     RouterModule,
-    UserModule 
+    UserModule,
+    ProductModule,
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [
     NotificationService,
     AuthService,
     WeatherService,
     AuthGuard,
-    AdminGuard
+    AdminGuard,
+    EventEmitterService
   ] 
 })
 

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         const formData = this.form.value;
 
         this.userService.login(formData).subscribe({
-            next: (message) => {  
+            next: () => {  
                 this.router.navigate(['/home']);
             },
             error: (err) => { 

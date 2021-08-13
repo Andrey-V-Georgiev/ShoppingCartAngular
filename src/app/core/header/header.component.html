@@ -46,10 +46,12 @@
     </div>
   
     <div *ngIf="showSearchBar; else tempCelsius">
-        <form id="search-form" class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      
+        <form id="search-form" class="d-flex" [formGroup]="form" (ngSubmit)="searchProducts()">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" formControlName="search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+   
     </div>
     <ng-template #tempCelsius>
         <div id="celsius" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">

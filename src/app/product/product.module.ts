@@ -8,6 +8,7 @@ import {ProductEditComponent} from './product-edit/product-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ProductService} from './services/product.service';
 import {SharedModule} from '../shared/shared.module';
+import { ProductSearchComponent } from './product-search/product-search.component'; 
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {SharedModule} from '../shared/shared.module';
         ProductAllComponent,
         ProductCreateComponent,
         ProductDetailsComponent,
-        ProductEditComponent
+        ProductEditComponent,
+        ProductSearchComponent 
     ],
     imports: [
         CommonModule,

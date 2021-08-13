@@ -5,7 +5,8 @@ import {AuthGuard} from '../core/guards/auth.guard';
 import {ProductAllComponent} from './product-all/product-all.component';
 import {ProductCreateComponent} from './product-create/product-create.component';
 import {ProductDetailsComponent} from './product-details/product-details.component';
-import {ProductEditComponent} from './product-edit/product-edit.component';
+import {ProductEditComponent} from './product-edit/product-edit.component'; 
+import {ProductSearchComponent} from './product-search/product-search.component';
 
 const routes: Routes = [
     {
@@ -28,6 +29,10 @@ const routes: Routes = [
                 path: 'edit',
                 component: ProductEditComponent,
                 canActivate: [AuthGuard, AdminGuard]
+            },
+            {
+                path: 'search',
+                component: ProductSearchComponent 
             }
         ]
     }
