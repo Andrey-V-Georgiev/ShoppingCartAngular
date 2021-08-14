@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import {CartService} from 'src/app/cart/services/cart.service';
 import {AuthService} from 'src/app/core/services/auth.service';
 import {NotificationService} from 'src/app/core/services/notification.service';
-import {IProduct} from 'src/app/shared/interfaces/product.interfaces'; 
+import {IProduct} from 'src/app/shared/interfaces/product.interfaces';
 import {ProductService} from '../services/product.service';
 
 @Component({
@@ -19,10 +20,11 @@ export class ProductDetailsComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
+        private cartService: CartService,
         private router: Router,
         private notificationService: NotificationService,
         private authService: AuthService,
-        private route: ActivatedRoute 
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
@@ -36,7 +38,7 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
 
-    productRemove(id: string) { 
+    productRemove(id: string) {
         this.productService.productRemove(id).subscribe({
             next: (message: string) => {
                 this.notificationService.setSuccessState(message);
@@ -50,7 +52,19 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
 
-    productEdit(id: string) {   
-        this.router.navigateByUrl(`/product/edit/${id}`); 
+    productEdit(id: string) {
+        this.router.navigateByUrl(`/product/edit/${id}`);
+    }
+
+    addToCart(productId: string) {
+        this.cartService.increaseProductQuantity(productId).subscribe({
+            next: (message: string) => {
+                this.notificationService.setSuccessState(message); 
+            },
+            error: (err) => {
+                const errorMessage: string = err.error;
+                this.notificationService.setErrorState(errorMessage); 
+            }
+        });
     }
 }

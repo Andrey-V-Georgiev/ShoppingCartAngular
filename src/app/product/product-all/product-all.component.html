@@ -11,7 +11,7 @@
                             <a [routerLink]="['/product/details', product.id]" class="card-link">... more details</a>
                         </p>
                         <div *ngIf="(isLogged$ | async); else guestPrice">
-                            <a class="btn btn-md btn-warning">
+                            <a (click)="addToCart(product.id)" class="btn btn-md btn-warning">
                                 <strong>Add to cart:</strong> {{product.price}}$
                             </a>
                         </div>

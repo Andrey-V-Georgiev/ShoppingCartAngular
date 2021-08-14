@@ -1,72 +1,76 @@
-<nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
+<div class="container-fluid fixed-top">
 
-        <div class="navbar-brand">
-            <div *ngIf="(isLogged$ | async); else guestHome">
-                <div *ngIf="(isAdmin$ | async); else userMeny">
-                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                        <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
-                        <a routerLink="/product/add" class="btn btn-outline-success btn-lg">Add product</a> 
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+    
+            <div class="navbar-brand">
+                <div *ngIf="(isLogged$ | async); else guestHome">
+                    <div *ngIf="(isAdmin$ | async); else userMeny">
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+                            <a routerLink="/product/add" class="btn btn-outline-success btn-lg">Add product</a> 
+                        </div>
                     </div>
+                    <ng-template #userMeny>
+                        <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+                    </ng-template>
                 </div>
-                <ng-template #userMeny>
-                    <a routerLink="/home" class="btn btn-outline-success btn-lg">Home</a>
+                <ng-template #guestHome>
+                    <a routerLink="/" class="btn btn-outline-success btn-lg">Home</a>
                 </ng-template>
             </div>
-            <ng-template #guestHome>
-                <a routerLink="/" class="btn btn-outline-success btn-lg">Home</a>
+    
+            <div *ngIf="(isLogged$ | async); else loggedOut">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Products</a>
+                    <a routerLink="/cart" class="btn btn-outline-success btn-lg">My cart</a>
+                    <a routerLink="/contact" class="btn btn-outline-success btn-lg">Contacts</a>
+                    <a (click)="logout()" class="btn btn-outline-success btn-lg">Logout</a>
+                </div>
+            </div>
+    
+            <ng-template #loggedOut>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Products</a>
+                    <a routerLink="/contact" class="btn btn-outline-success btn-lg">Contacts</a>
+                    <a routerLink="/register" class="btn btn-outline-success btn-lg">Register</a>
+                    <a routerLink="/login" class="btn btn-outline-success btn-lg">Login</a>
+                </div>
             </ng-template>
         </div>
-
-        <div *ngIf="(isLogged$ | async); else loggedOut">
-            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Products</a>
-                <a routerLink="/cart" class="btn btn-outline-success btn-lg">My cart</a>
-                <a routerLink="/contact" class="btn btn-outline-success btn-lg">Contacts</a>
-                <a (click)="logout()" class="btn btn-outline-success btn-lg">Logout</a>
+    </nav>
+    
+    <nav class="navbar navbar-light bg-body">
+    
+        <div *ngIf="(isLogged$ | async); else emptyDiv">
+            <div id="username" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">
+                Welcome, {{userUsername$ | async}}
             </div>
         </div>
-
-        <ng-template #loggedOut>
-            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <a routerLink="/product/all" class="btn btn-outline-success btn-lg">Products</a>
-                <a routerLink="/contact" class="btn btn-outline-success btn-lg">Contacts</a>
-                <a routerLink="/register" class="btn btn-outline-success btn-lg">Register</a>
-                <a routerLink="/login" class="btn btn-outline-success btn-lg">Login</a>
+        <ng-template #emptyDiv>
+            <div class="alert alert-light col-1"> </div>
+        </ng-template>
+    
+        <div id="notification" [className]="(notificationState$ | async).className" role="alert">
+            {{(notificationState$ | async).notificationMessage}}
+        </div>
+      
+        <div *ngIf="showSearchBar; else tempCelsius">
+          
+            <form id="search-form" class="d-flex" [formGroup]="form" (ngSubmit)="searchProducts()">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" formControlName="search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+       
+        </div>
+        <ng-template #tempCelsius>
+            <div id="celsius" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">
+                <div *ngIf="(weather$ | async)">
+                    {{(weather$ | async).name}} {{(weather$ | async).main.temp | number : '1.0-0' }} &#8451;
+                </div>
             </div>
         </ng-template>
-    </div>
-</nav>
+    
+    </nav>
 
-<nav class="navbar navbar-light bg-transparent">
-
-    <div *ngIf="(isLogged$ | async); else emptyDiv">
-        <div id="username" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">
-            Welcome, {{userUsername$ | async}}
-        </div>
-    </div>
-    <ng-template #emptyDiv>
-        <div class="alert alert-light col-1"> </div>
-    </ng-template>
-
-    <div id="notification" [className]="(notificationState$ | async).className" role="alert">
-        {{(notificationState$ | async).notificationMessage}}
-    </div>
-  
-    <div *ngIf="showSearchBar; else tempCelsius">
-      
-        <form id="search-form" class="d-flex" [formGroup]="form" (ngSubmit)="searchProducts()">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" formControlName="search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-   
-    </div>
-    <ng-template #tempCelsius>
-        <div id="celsius" class="btn btn-lg btn-outline-dark border border-white disabled d-flex flex-row-reverse">
-            <div *ngIf="(weather$ | async)">
-                {{(weather$ | async).name}} {{(weather$ | async).main.temp | number : '1.0-0' }} &#8451;
-            </div>
-        </div>
-    </ng-template>
-
-</nav>
+</div>

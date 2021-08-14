@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import {CartService} from 'src/app/cart/services/cart.service';
 import {AuthService} from 'src/app/core/services/auth.service';
 import {NotificationService} from 'src/app/core/services/notification.service';
 import {IProduct} from 'src/app/shared/interfaces/product.interfaces';
@@ -18,6 +19,7 @@ export class ProductAllComponent implements OnInit {
 
     constructor(
         private productService: ProductService,
+        private cartService: CartService,
         private router: Router,
         private notificationService: NotificationService,
         private authService: AuthService
@@ -29,6 +31,18 @@ export class ProductAllComponent implements OnInit {
                 const errorMessage: string = err.error;
                 this.notificationService.setErrorState(errorMessage);
                 this.router.navigateByUrl(this.router.url);
+            }
+        });
+    }
+
+    addToCart(productId: string) {
+        this.cartService.increaseProductQuantity(productId).subscribe({
+            next: (message: string) => {
+                this.notificationService.setSuccessState(message); 
+            },
+            error: (err) => {
+                const errorMessage: string = err.error;
+                this.notificationService.setErrorState(errorMessage); 
             }
         });
     }

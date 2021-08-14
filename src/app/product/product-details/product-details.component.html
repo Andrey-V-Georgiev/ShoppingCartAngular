@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row justify-content-md-center  rounded"> 
+    <div class="row justify-content-md-center  rounded">
 
         <div *ngIf="(productsDetails$ | async)">
             <div class="card-group">
@@ -9,8 +9,10 @@
                     <div class="card-body">
                         <div *ngIf="(isAdmin$ | async); else goBack">
                             <button routerLink="/product/all" class="btn btn-lg btn-outline-secondary">Go back</button>
-                            <button *ngIf="(productsDetails$ | async) as product" (click)="productEdit(product.id)" class="btn btn-lg btn-warning">Edit</button>
-                            <button *ngIf="(productsDetails$ | async) as product" (click)="productRemove(product.id)" class="btn btn-lg btn-danger">Delete</button>
+                            <button *ngIf="(productsDetails$ | async) as product" (click)="productEdit(product.id)"
+                                class="btn btn-lg btn-warning">Edit</button>
+                            <button *ngIf="(productsDetails$ | async) as product" (click)="productRemove(product.id)"
+                                class="btn btn-lg btn-danger">Delete</button>
                         </div>
                         <ng-template #goBack>
                             <button routerLink="/product/all" class="btn btn-lg btn-outline-secondary">Go back</button>
@@ -23,11 +25,13 @@
                     <div class="card-body">
                         <h5 class="card-title">{{(productsDetails$ | async).name}}</h5>
                         <p class="card-text">{{(productsDetails$ | async).description}}</p>
-                       
+
                         <div *ngIf="(isLogged$ | async); else guestPrice">
                             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                <button type="button" class="btn btn-md btn-warning"><strong>Add to cart:</strong>
-                                    {{(productsDetails$ | async).price}}$</button>
+                                <button *ngIf="(productsDetails$ | async) as product" (click)="addToCart(product.id)"
+                                    class="btn btn-md btn-warning">
+                                    <strong>Add to cart:</strong> {{(productsDetails$ | async).price}}$
+                                </button>
                             </div>
                         </div>
                         <ng-template #guestPrice>
