@@ -1,24 +1,24 @@
 <div class="container" id="products-container">
     <div class="row justify-content-md-center  rounded">
 
-        <div class="col-8">
+        <div *ngIf="(cart$ | async)" class="col-8">
             <table class="table">
                 <thead>
                     <tr class="row">
-                        <th class="col-1"></th >
-                        <th class="col-6">Product</th >
-                        <th class="col-1">Price</th >
-                        <th class="col-1">Total</th >
-                        <th class="col-1">Qty</th >
-                        <th class="col-2"></th >
+                        <th class="col-1"></th>
+                        <th class="col-6">Product</th>
+                        <th class="col-1">Price</th>
+                        <th class="col-1">Total</th>
+                        <th class="col-1">Qty</th>
+                        <th class="col-2"></th>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     <div *ngFor="let cartProduct of (cart$ | async).cartProducts">
                         <tr class="row">
 
-                            <td class="col-1">
+                            <td class="col-1 d-flex align-items-center">
                                 <img src="https://www.crw-airsoft.com/ekmps/shops/crwuk/images/1-3-abs-cz-shadow-2-key-chain-14196-p.jpg"
                                     alt="..." class="img-fluid img-thumbnail">
                             </td>
@@ -39,11 +39,17 @@
                                 {{cartProduct.quantity}}
                             </td>
 
-                            <td class="col-2">
+                            <td class="col-2 d-flex align-items-center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-success">&#43;</button>
-                                    <button type="button" class="btn btn-outline-success">&#8722;</button>
-                                    <button type="button" class="btn btn-outline-danger">&#88;</button>
+                                    <button (click)="increaseProductQuantity(cartProduct.product.id)" class="btn btn-outline-success">
+                                        &#43;
+                                    </button>
+                                    <button (click)="decreaseProductQuantity(cartProduct.product.id)" class="btn btn-outline-success">
+                                        &#8722;
+                                    </button>
+                                    <button (click)="removeProductFromCart(cartProduct.id)" class="btn btn-outline-danger">
+                                        &#88;
+                                    </button>
                                 </div>
                             </td>
 
