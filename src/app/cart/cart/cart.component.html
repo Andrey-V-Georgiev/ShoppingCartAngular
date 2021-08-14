@@ -4,38 +4,55 @@
         <div class="col-8">
             <table class="table">
                 <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col"></th>
+                    <tr class="row">
+                        <th class="col-1"></th >
+                        <th class="col-6">Product</th >
+                        <th class="col-1">Price</th >
+                        <th class="col-1">Total</th >
+                        <th class="col-1">Qty</th >
+                        <th class="col-2"></th >
                     </tr>
                 </thead>
+                
                 <tbody>
+                    <div *ngFor="let cartProduct of (cart$ | async).cartProducts">
+                        <tr class="row">
 
-                    <tr>
-                        <td>
-                            <img src="https://www.crw-airsoft.com/ekmps/shops/crwuk/images/1-3-abs-cz-shadow-2-key-chain-14196-p.jpg"
-                                alt="..." class="img-fluid img-thumbnail">
-                        </td>
-                        <td>G17 sdsffsfdsfdsfsadfafsdafsafasf</td>
-                        <td>950$</td>
-                        <td>1900$</td>
-                        <td>2</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-outline-success">&#43;</button>
-                                <button type="button" class="btn btn-outline-success">&#8722;</button>
-                                <button type="button" class="btn btn-outline-danger">&#88;</button>
-                            </div>
-                        </td>
-                    </tr>
-                   
+                            <td class="col-1">
+                                <img src="https://www.crw-airsoft.com/ekmps/shops/crwuk/images/1-3-abs-cz-shadow-2-key-chain-14196-p.jpg"
+                                    alt="..." class="img-fluid img-thumbnail">
+                            </td>
+
+                            <td class="col-6 d-flex align-items-center">
+                                {{cartProduct.product.name}}
+                            </td>
+
+                            <td class="col-1 d-flex align-items-center">
+                                {{cartProduct.product.price}}$
+                            </td>
+
+                            <td class="col-1 d-flex align-items-center">
+                                {{cartProduct.totalPrice}}$
+                            </td>
+
+                            <td class="col-1 d-flex align-items-center">
+                                {{cartProduct.quantity}}
+                            </td>
+
+                            <td class="col-2">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-outline-success">&#43;</button>
+                                    <button type="button" class="btn btn-outline-success">&#8722;</button>
+                                    <button type="button" class="btn btn-outline-danger">&#88;</button>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </div>
                 </tbody>
-            </table>
-        </div>
 
+            </table>
+
+        </div>
     </div>
 </div>
