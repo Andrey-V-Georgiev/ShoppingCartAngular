@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {NavigationEnd, Router} from '@angular/router';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {filter} from 'rxjs/operators';
 import {INotificationState} from '../../shared/interfaces/notification-state.interfaces';
 
 @Injectable({
@@ -7,12 +9,13 @@ import {INotificationState} from '../../shared/interfaces/notification-state.int
 })
 export class NotificationService {
 
-    private _stateNotification: BehaviorSubject<INotificationState> = new BehaviorSubject(this.generateInitialState()); 
+    private _stateNotification: BehaviorSubject<INotificationState> = new BehaviorSubject(this.generateInitialState());
 
     constructor(
+        private router: Router
     ) { }
 
-    getNotificationState(): Observable<INotificationState> { 
+    getNotificationState(): Observable<INotificationState> {
         return this._stateNotification;
     }
 
