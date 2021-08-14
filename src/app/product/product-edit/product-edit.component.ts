@@ -63,13 +63,12 @@ export class ProductEditComponent implements OnInit {
     productEdit(): void {
         const data = this.form.value;
         this.productService.productEdit(data).subscribe({
-            next: () => {
-                this.router.navigate(['/product/all']);
+            next: (data: IProduct) => {
+                this.router.navigate([`/product/details/${data.id}`]);
             },
             error: (err) => {
                 const errorMessage: string = err.error;
-                this.notificationService.setErrorState(errorMessage);
-                this.router.navigate(['/product/all']);
+                this.notificationService.setErrorState(errorMessage); 
             }
         });
     }

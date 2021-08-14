@@ -4,8 +4,8 @@
         <div *ngIf="(productsDetails$ | async)">
             <div class="card-group">
 
-                <div class="card">
-                    <img [src]="(productsDetails$ | async).pictureUrl" class="card-img-top" alt="...">
+                <div id="card-left" class="card">
+                    <img id="pictureUrl" [src]="(productsDetails$ | async).pictureUrl" class="card-img-top" alt="...">
                     <div class="card-body">
                         <div *ngIf="(isAdmin$ | async); else goBack">
                             <button routerLink="/product/all" class="btn btn-lg btn-outline-secondary">Go back</button>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div id="card-right" class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{(productsDetails$ | async).name}}</h5>
                         <p class="card-text">{{(productsDetails$ | async).description}}</p>
