@@ -4,4 +4,17 @@
 
 .img-fluid {
     height: 5vh;
+} 
+
+.modal {
+    margin-top: 40vh;
+}
+ 
+#checkout-btn {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+#empty-btn {
+    padding-right: 1vw;
 }

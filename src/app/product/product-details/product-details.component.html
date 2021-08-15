@@ -7,17 +7,45 @@
                 <div id="card-left" class="card">
                     <img id="pictureUrl" [src]="(productsDetails$ | async).pictureUrl" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <div *ngIf="(isAdmin$ | async); else goBack">
-                            <button routerLink="/product/all" class="btn btn-lg btn-outline-secondary">Go back</button>
-                            <button *ngIf="(productsDetails$ | async) as product" (click)="productEdit(product.id)"
-                                class="btn btn-lg btn-warning">Edit</button>
-                            <button *ngIf="(productsDetails$ | async) as product" (click)="productRemove(product.id)"
-                                class="btn btn-lg btn-danger">Delete</button>
+
+                        <!-- IF LOGGED -->
+                        <div *ngIf="(isLogged$ | async); else guestNav">
+
+                            <!-- IF ADMIN -->
+                            <div *ngIf="(isAdmin$ | async)">
+                                <div class="btn-group w-100" role="group">
+                                    <button routerLink="/product/all"
+                                        class="btn btn-lg btn-outline-secondary border-dark text-dark">Products</button>
+                                    <button routerLink="/cart" class="btn btn-lg btn-outline-secondary border-dark text-dark">My cart</button>
+                                    <button *ngIf="(productsDetails$ | async) as product"
+                                        (click)="productEdit(product.id)" class="btn btn-lg btn-warning border border-dark text-dark">Edit</button>
+                                    <button *ngIf="(productsDetails$ | async) as product"
+                                        (click)="productRemove(product.id)"
+                                        class="btn btn-lg btn-danger border border-dark text-dark">Delete</button>
+                                </div>
+                            </div>
+
+                            <!-- NOT ADMIN -->
+                            <div *ngIf="!(isAdmin$ | async)">
+                                <div class="btn-group w-100" role="group">
+                                    <button routerLink="/product/all"
+                                        class="btn btn-lg btn-outline-success">All products</button>
+                                    <button routerLink="/cart" class="btn btn-lg btn-outline-success">My cart</button>
+                                </div>
+                            </div>
+
                         </div>
-                        <ng-template #goBack>
-                            <button routerLink="/product/all" class="btn btn-lg btn-outline-secondary">Go back</button>
-                            <button routerLink="/login" class="btn btn-lg btn-outline-success">Sign in and shop</button>
+
+                        <!-- GUEST -->
+                        <ng-template #guestNav>
+                            <div class="btn-group w-100" role="group">
+                                <button routerLink="/product/all" class="btn btn-lg btn-outline-success">All
+                                    products</button>
+                                <button routerLink="/login" class="btn btn-lg btn-outline-success">Sign in and
+                                    shop</button>
+                            </div>
                         </ng-template>
+
                     </div>
                 </div>
 

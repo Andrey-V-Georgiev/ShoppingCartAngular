@@ -81,5 +81,35 @@ export class CartComponent implements OnInit {
                 this.findCart();
             }
         });
+    } 
+
+    checkoutCart(): void {
+        this.cartService.checkoutCart().subscribe({
+            next: (message) => {
+                this.notificationService.setSuccessState(message);
+                this.findCart();
+            },
+            error: (err) => {
+                console.log(err);
+                
+                const errorMessage: string = err.error;
+                this.notificationService.setErrorState(errorMessage);
+                this.findCart();
+            }
+        });
+    } 
+
+    emptyCart(): void {
+        this.cartService.emptyCart().subscribe({
+            next: (message) => {
+                this.notificationService.setSuccessState(message);
+                this.findCart();
+            },
+            error: (err) => { 
+                const errorMessage: string = err.error;
+                this.notificationService.setErrorState(errorMessage);
+                this.findCart();
+            }
+        });
     }
 }

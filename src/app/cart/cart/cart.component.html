@@ -1,6 +1,5 @@
 <div class="container" id="products-container">
     <div class="row justify-content-md-center  rounded">
-
         <div *ngIf="(cart$ | async)" class="col-8">
             <table class="table">
                 <thead>
@@ -10,55 +9,70 @@
                         <th class="col-1">Price</th>
                         <th class="col-1">Total</th>
                         <th class="col-1">Qty</th>
-                        <th class="col-2"></th>
+                        <th class="col-2 d-flex align-items-center">
+                            <button id="empty-btn" (click)="emptyCart()" class="btn btn-md btn-outline-warning">Empty cart</button>
+                        </th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <div *ngFor="let cartProduct of (cart$ | async).cartProducts">
                         <tr class="row">
-
                             <td class="col-1 d-flex align-items-center">
-                                <img [src]="cartProduct.product.pictureUrl"
-                                    alt="..." class="img-fluid img-thumbnail">
+                                <div [routerLink]="['/product/details', cartProduct.product.id]" type="button">
+                                    <img [src]="cartProduct.product.pictureUrl" class="img-fluid img-thumbnail">
+                                </div>
                             </td>
-
                             <td class="col-6 d-flex align-items-center">
                                 {{cartProduct.product.name}}
                             </td>
-
                             <td class="col-1 d-flex align-items-center">
                                 {{cartProduct.product.price}}$
                             </td>
-
                             <td class="col-1 d-flex align-items-center">
                                 {{cartProduct.totalPrice}}$
                             </td>
-
                             <td class="col-1 d-flex align-items-center">
                                 {{cartProduct.quantity}}
                             </td>
-
                             <td class="col-2 d-flex align-items-center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button (click)="increaseProductQuantity(cartProduct.product.id)" class="btn btn-outline-success">
+                                    <button (click)="increaseProductQuantity(cartProduct.product.id)"
+                                        class="btn btn-outline-success">
                                         &#43;
                                     </button>
-                                    <button (click)="decreaseProductQuantity(cartProduct.product.id)" class="btn btn-outline-success">
+                                    <button (click)="decreaseProductQuantity(cartProduct.product.id)"
+                                        class="btn btn-outline-success">
                                         &#8722;
                                     </button>
-                                    <button (click)="removeProductFromCart(cartProduct.id)" class="btn btn-outline-danger">
+                                    <button (click)="removeProductFromCart(cartProduct.id)"
+                                        class="btn btn-outline-danger">
                                         &#88;
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                     </div>
+                    <div class="row">
+                        <div class="col-3 d-flex align-items-center">Total price:</div>
+                        <div class="col-2 d-flex align-items-center">{{(cart$ | async).totalPriceProducts}} $</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex align-items-center">Discount:</div>
+                        <div class="col-2 d-flex align-items-center">{{(cart$ | async).finalDiscountInMoney}} $ </div>
+                        <div class="col-1 d-flex align-items-center">(<div class="text-danger">&#8722;{{(cart$ |
+                                async).finalDiscountInPercent}}%</div>)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 d-flex align-items-center"><strong>Total price after discount: </strong></div>
+                        <div class="col-3 d-flex align-items-center">{{(cart$ | async).totalPriceAfterAllSumDiscounts}}
+                            $</div>
+                        <div class="col-4"></div>
+                        <div class="col-2 d-flex align-items-center">
+                            <button id="checkout-btn" (click)="checkoutCart()" class="btn btn-warning">Checkout</button>
+                        </div>
+                    </div>
                 </tbody>
-
             </table>
-
         </div>
     </div>
 </div>

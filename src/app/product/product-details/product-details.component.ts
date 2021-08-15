@@ -38,7 +38,7 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
 
-    productRemove(id: string) {
+    productRemove(id: string): void {
         this.productService.productRemove(id).subscribe({
             next: (message: string) => {
                 this.notificationService.setSuccessState(message);
@@ -52,7 +52,7 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
 
-    productEdit(id: string) {
+    productEdit(id: string): void {
         this.router.navigateByUrl(`/product/edit/${id}`);
     }
 
@@ -66,5 +66,5 @@ export class ProductDetailsComponent implements OnInit {
                 this.notificationService.setErrorState(errorMessage); 
             }
         });
-    }
+    } 
 }

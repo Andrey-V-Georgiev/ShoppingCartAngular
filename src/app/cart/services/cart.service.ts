@@ -38,4 +38,12 @@ export class CartService {
     removeProductFromCart(cartProductId: string): Observable<string> {
         return this.http.delete<string>(`/cart/remove/${cartProductId}`);
     }
+
+    checkoutCart(): Observable<string>  {
+        return this.http.delete<string>('/cart/checkout');
+    }
+
+    emptyCart(): Observable<string>  {
+        return this.http.delete<string>('/cart/empty');
+    }
 }
