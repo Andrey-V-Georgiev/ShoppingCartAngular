@@ -10,8 +10,7 @@ export interface ICart {
                 "price": number,
                 "addedOn": Date
             },
-            "quantity": number,
-            "totalPrice": number,
+            "quantity": number, 
             "totalPriceAfterQuantityDiscount": number
         }
     ],

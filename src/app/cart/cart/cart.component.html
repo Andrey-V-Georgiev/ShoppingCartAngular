@@ -10,7 +10,8 @@
                         <th class="col-1">Total</th>
                         <th class="col-1">Qty</th>
                         <th class="col-2 d-flex align-items-center">
-                            <button id="empty-btn" (click)="emptyCart()" class="btn btn-md btn-outline-warning">Empty cart</button>
+                            <button id="empty-btn" (click)="emptyCart()" class="btn btn-md btn-outline-warning">Empty
+                                cart</button>
                         </th>
                     </tr>
                 </thead>
@@ -29,7 +30,7 @@
                                 {{cartProduct.product.price}}$
                             </td>
                             <td class="col-1 d-flex align-items-center">
-                                {{cartProduct.totalPrice}}$
+                                {{cartProduct.product.price * cartProduct.quantity}}$
                             </td>
                             <td class="col-1 d-flex align-items-center">
                                 {{cartProduct.quantity}}
